@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Add_Account_Information</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Add Account Information</label>
+        <locationX>971</locationX>
+        <locationY>263</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Account details
+Account Name - {!Account.Name}
+Type - {!Account.Classification__c}
+Industry - {!Account.Industry}
+Tenure - {!Account.Customer_Tenure__c}
+Tier - {!Account.Customer_Tier__c}
+Premium Account - {!Account.Premium_Customer__c}
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Opportunities</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_interaction_information</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Add interaction information</label>
+        <locationX>642</locationX>
+        <locationY>471</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Interaction Details
+Interaction Date - {!Loop_through_each_interaction.Interaction_Date__c}
+Type - {!Loop_through_each_interaction.Interaction_Type__c}
+Notes - {!Loop_through_each_interaction.Interaction_Notes__c}
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_each_interaction</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_opportunity_Details</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Add opportunity Details</label>
+        <locationX>341</locationX>
+        <locationY>130</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Opportunity Details
+Opportunity Name - {!Loop_through_each_opportunityName}
+Opportunity Product - {!Loop_through_each_opportunity.Product__c}
+Opportunity Close Date - {!Loop_through_each_opportunity.CloseDate}
+Opportunity Stage - {!Loop_through_each_opportunity.StageName}
+Close Plan - {!Loop_through_each_opportunity.Close_Plan__c}
+Proposal  - {!Loop_through_each_opportunity.Proposal__c}
+
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_each_opportunity</targetReference>
+        </connector>
+    </assignments>
+    <environments>Default</environments>
+    <interviewLabel>PA Account Prep Notes Grounding {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>PA Account Prep Notes Grounding</label>
+    <loops>
+        <name>Loop_through_each_interaction</name>
+        <label>Loop through each interaction</label>
+        <locationX>458</locationX>
+        <locationY>554</locationY>
+        <collectionReference>Get_Interactions</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Add_interaction_information</targetReference>
+        </nextValueConnector>
+    </loops>
+    <loops>
+        <name>Loop_through_each_opportunity</name>
+        <label>Loop through each opportunity</label>
+        <locationX>507</locationX>
+        <locationY>344</locationY>
+        <collectionReference>Get_Opportunities</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Add_opportunity_Details</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Get_Interactions</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>PromptFlow</processType>
+    <recordLookups>
+        <name>Get_Interactions</name>
+        <label>Get Interactions</label>
+        <locationX>265</locationX>
+        <locationY>433</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_through_each_interaction</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Account.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Interaction__c</object>
+        <sortField>Interaction_Date__c</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Opportunities</name>
+        <label>Get Opportunities</label>
+        <locationX>712</locationX>
+        <locationY>329</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_through_each_opportunity</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Account.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Opportunity</object>
+        <sortField>CloseDate</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>585</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Add_Account_Information</targetReference>
+        </connector>
+        <triggerType>Capability</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>Account</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Account</objectType>
+    </variables>
+</Flow>

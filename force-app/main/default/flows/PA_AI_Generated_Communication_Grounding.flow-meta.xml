@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Account_Information_Grounding</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Account Information Grounding</label>
+        <locationX>218</locationX>
+        <locationY>245</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Account details
+Account Name - {!Get_Accounts.Name}
+Type - {!Get_Accounts.Classification__c}
+Industry - {!Get_Accounts.Industry}
+Tenure - {!Get_Accounts.Customer_Tenure__c}
+Tier - {!Get_Accounts.Customer_Tier__c}
+Premium Account - {!Get_Accounts.Premium_Customer__c}
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_contact_for_Account</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_Account_Information_for_Contact</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Add Account Information for Contact</label>
+        <locationX>1587</locationX>
+        <locationY>611</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Account details
+Account Name - {!Get_Account_for_Contact.Name}
+Type - {!Get_Account_for_Contact.Classification__c}
+Industry - {!Get_Account_for_Contact.Industry}
+Tenure - {!Get_Account_for_Contact.Customer_Tenure__c}
+</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Add_Contact_Details_for_Opportunity</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Add Contact Details for Opportunity</label>
+        <locationX>1144</locationX>
+        <locationY>593</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Contact Details
+Name - {!Get_Records_for_Contact_for_Opportunity.Name}
+email - {!Get_Records_for_Contact_for_Opportunity.Email}
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>get_Interactions_for_Opportunity</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_Contact_Information</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Add Contact Information</label>
+        <locationX>1282</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Contact Details
+Name - {!Get_Contact.Name}
+email - {!Get_Contact.Email}
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Account_for_Contact</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_interaction_for_accounts</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Add interaction for accounts</label>
+        <locationX>275</locationX>
+        <locationY>1024</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Interaction Date - {!Loop_through_interactions.Interaction_Date__c}
+Type - {!Loop_through_interactions.Interaction_Type__c}
+Notes - {!Loop_through_interactions.Interaction_Notes__c}
+
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_interactions</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_interaction_for_opportunity</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Add interaction for opportunity</label>
+        <locationX>1299</locationX>
+        <locationY>1048</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Interaction Date - {!Loop_through_interactions_for_opportunity.Interaction_Date__c}
+Type - {!Loop_through_interactions_for_opportunity.Interaction_Type__c}
+Notes - {!Loop_through_interactions_for_opportunity.Interaction_Notes__c}
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_interactions_for_opportunity</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_Onboarding_Information</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Add Onboarding Information</label>
+        <locationX>1414</locationX>
+        <locationY>193</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Onboarding Details 
+Onboarding Name : {!Get_Records_for_Onboarding.Name}
+Onboarding Notes : {!Get_Records_for_Onboarding.Notes__c}
+Onboarding Stage : {!Get_Records_for_Onboarding.Stage__c}
+Onboarding Target Date : {!Get_Records_for_Onboarding.Target_Date__c}
+
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Contact_for_Onboarding</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_Opportunity_Information</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Add Opportunity Information</label>
+        <locationX>888</locationX>
+        <locationY>422</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Account Name - {!Get_Opportunity.Account.Name}
+Opportunity Name - {!Get_Opportunity.Name}
+Opportunity Product - {!Get_Opportunity.Product__c}
+Opportunity Close Date - {!Get_Opportunity.CloseDate}
+Opportunity Stage - {!Get_Opportunity.StageName}
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Records_for_Contact_for_Opportunity</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Contact_Details_for_Onboarding</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Contact Details for Onboarding</label>
+        <locationX>1798</locationX>
+        <locationY>312</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Contact Details
+Name - {!Get_Contact_for_Onboarding.Name}
+email - {!Get_Contact_for_Onboarding.Email}
+</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Contact_Grounding</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Contact Grounding</label>
+        <locationX>311</locationX>
+        <locationY>564</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Contact Details
+Name - {!Get_contact_for_Account.Name}
+email - {!Get_contact_for_Account.Email}
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Interactions_for_Account</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Sales_Alert_Information</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Sales Alert Information</label>
+        <locationX>312</locationX>
+        <locationY>139</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Alert Reason -  {!Sales_Alert.Trigger_Reason__c}
+Object - {!Sales_Alert.Object__c}
+Button Clicked - {!ActionClicked}
+</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>ObjectType</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>ObjectType</name>
+        <label>ObjectType</label>
+        <locationX>740</locationX>
+        <locationY>282</locationY>
+        <defaultConnector>
+            <targetReference>Get_Records_for_Onboarding</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Onboarding</defaultConnectorLabel>
+        <rules>
+            <name>Account</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Sales_Alert.Object__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Account</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Accounts</targetReference>
+            </connector>
+            <label>Account</label>
+        </rules>
+        <rules>
+            <name>Opportunity</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Sales_Alert.Object__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Opportunity</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Opportunity</targetReference>
+            </connector>
+            <label>Opportunity</label>
+        </rules>
+        <rules>
+            <name>Contact</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Sales_Alert.Object__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Contact</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Contact</targetReference>
+            </connector>
+            <label>Contact</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>PA_AI_Generated_Communication_Grounding {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>PA_AI_Generated_Communication_Grounding</label>
+    <loops>
+        <name>Loop_through_interactions</name>
+        <label>Loop through interactions</label>
+        <locationX>108</locationX>
+        <locationY>797</locationY>
+        <collectionReference>Get_Interactions_for_Account</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Add_interaction_for_accounts</targetReference>
+        </nextValueConnector>
+    </loops>
+    <loops>
+        <name>Loop_through_interactions_for_opportunity</name>
+        <label>Loop through interactions for opportunity</label>
+        <locationX>1121</locationX>
+        <locationY>851</locationY>
+        <collectionReference>get_Interactions_for_Opportunity</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Add_interaction_for_opportunity</targetReference>
+        </nextValueConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>PromptFlow</processType>
+    <recordLookups>
+        <name>Get_Account_for_Contact</name>
+        <label>Get Account for Contact</label>
+        <locationX>1364</locationX>
+        <locationY>544</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Add_Account_Information_for_Contact</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Contact.Account.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Accounts</name>
+        <label>Get Accounts</label>
+        <locationX>474</locationX>
+        <locationY>394</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Account_Information_Grounding</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Sales_Alert.Record_Id__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Annual_Revenue_Bucket__c</queriedFields>
+        <queriedFields>Classification__c</queriedFields>
+        <queriedFields>Industry</queriedFields>
+        <queriedFields>NumberOfEmployees</queriedFields>
+        <queriedFields>Employee_Size_Bucket__c</queriedFields>
+        <queriedFields>AnnualRevenue</queriedFields>
+        <queriedFields>Customer_Since__c</queriedFields>
+        <queriedFields>Products__c</queriedFields>
+        <queriedFields>Region__c</queriedFields>
+        <queriedFields>Customer_Tenure__c</queriedFields>
+        <queriedFields>Number_of_Products__c</queriedFields>
+        <queriedFields>Days_Since_Last_Interaction__c</queriedFields>
+        <queriedFields>Customer_Revenue__c</queriedFields>
+        <queriedFields>Customer_Tier__c</queriedFields>
+        <queriedFields>Premium_Customer__c</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>Last_Interaction_Date__c</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Contact</name>
+        <label>Get Contact</label>
+        <locationX>1109</locationX>
+        <locationY>312</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Add_Contact_Information</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Sales_Alert.Record_Id__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_contact_for_Account</name>
+        <label>Get contact for Account</label>
+        <locationX>147</locationX>
+        <locationY>432</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Contact_Grounding</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Accounts.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Primary_Contact__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Contact_for_Onboarding</name>
+        <label>Get Contact for Onboarding</label>
+        <locationX>1649</locationX>
+        <locationY>256</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Contact_Details_for_Onboarding</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Records_for_Onboarding.Opportunity__r.Account.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Primary_Contact__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Interactions_for_Account</name>
+        <label>Get Interactions for Account</label>
+        <locationX>346</locationX>
+        <locationY>703</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_through_interactions</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Accounts.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Interaction__c</object>
+        <sortField>Interaction_Date__c</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>get_Interactions_for_Opportunity</name>
+        <label>get Interactions for Opportunity</label>
+        <locationX>921</locationX>
+        <locationY>808</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_through_interactions_for_opportunity</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Opportunity__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Opportunity.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Interaction__c</object>
+        <sortField>Interaction_Date__c</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Opportunity</name>
+        <label>Get Opportunity</label>
+        <locationX>746</locationX>
+        <locationY>525</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Add_Opportunity_Information</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Sales_Alert.Record_Id__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Opportunity</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Records_for_Contact_for_Opportunity</name>
+        <label>Get Records for Contact for Opportunity</label>
+        <locationX>994</locationX>
+        <locationY>566</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Add_Contact_Details_for_Opportunity</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Opportunity.Account.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Primary_Contact__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Records_for_Onboarding</name>
+        <label>Get Records for Onboarding</label>
+        <locationX>1197</locationX>
+        <locationY>137</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Add_Onboarding_Information</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Sales_Alert.Record_Id__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Onboarding__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>585</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Sales_Alert_Information</targetReference>
+        </connector>
+        <triggerType>Capability</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>ActionClicked</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>Sales_Alert</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Sales_Alerts__c</objectType>
+    </variables>
+</Flow>

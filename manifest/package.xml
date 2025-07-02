@@ -23,6 +23,12 @@
         <name>CustomObject</name>
     </types>
     <types>
+        <members>PA_AI_Generated_Communication_Grounding</members>
+        <members>PA_winning_proposals_for_grounding</members> 
+        <members>PA_Account_Prep_Notes_Grounding</members>  
+        <name>Flow</name>
+    </types>
+    <types>
         <members>PA_AI_Generated_Proposal_Draft</members>
         <members>Sales_Rep_Meeting_Summary</members>
         <members>Contact_Intelligence_Demo_Summary_Generator</members>
