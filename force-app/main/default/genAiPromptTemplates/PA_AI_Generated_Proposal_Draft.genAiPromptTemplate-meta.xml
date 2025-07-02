@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_2</activeVersionIdentifier>
+    <developerName>PA_AI_Generated_Proposal_Draft</developerName>
+    <masterLabel>PA AI Generated Proposal Draft</masterLabel>
+    <templateVersions>
+        <content>You are an expert proposal writer who creates winning business proposals for industrial automation and control systems products. Using the current opportunity details and patterns from our successful past proposals, generate a concise, compelling proposal that fits within a long text area field.
+INPUT DATA
+You will receive:
+Current opportunity details:
+Product/Service: {!$Input:Opportunity.Product__c}
+Opportunity Name: {!$Input:Opportunity.Name}
+Client/Account Name: {!$Input:Opportunity.Account.Name}
+Opportunity Type: {!$Input:Opportunity.Type}
+Examples of successful proposals from closed-won deals: {!$Flow:PA_winning_proposals_for_grounding.Prompt}
+INSTRUCTIONS
+Analyze Patterns From Winning Proposals: Review our successful proposals to identify:
+Standard opening format: &quot;[Client Name] is offered the [Product Name] solution at a total contract value of $[Amount]&quot;
+Typical discount ranges (4-9% when applicable)
+Common inclusions based on product type
+Standard delivery timeframe (typically 4 weeks)
+Consistent closing statement
+Generate Concise Proposal: Create a focused proposal that:
+Begins with our standard opening format
+Includes an appropriate commercial discount if warranted (4-9% range)
+Specifies the exact deliverables based on the product type
+Maintains our standard 4-week delivery commitment
+Ends with our standard closing statement about commitment to service
+Is fully customized to this specific client and opportunity
+Product-Specific Inclusions:
+For SmartVision AI Cameras: Include AI camera configuration, one-year analytics software license, and system calibration
+For AutoGrid SCADA Suite: Include product delivery, 12 months of technical support, and standard SLAs
+For AutoCore PLC Series: Include PLC programming services, 18-month maintenance, and priority technical support
+For FlowLogic HMI Panels: Include touchscreen setup, 24-month warranty, installation support, and optimization services
+For OptiLine Drive Systems: Include product delivery, 12 months of technical support, and standard SLAs
+For AutoSense IoT Gateway: Include gateway installation, 12-month connectivity monitoring, troubleshooting, and uptime guarantees
+OUTPUT EXPECTATIONS
+Produce a concise proposal that:
+Follows our established format and language patterns
+Is between 3-5 sentences total
+Mentions specific deliverables for the selected product
+Includes appropriate commercial discount (when applicable)
+Specifies 4-week delivery timeframe
+Ends with our standard closing statement
+Is ready to paste directly into a long text area field
+FORMAT EXAMPLE
+&quot;[Client Name] is offered the [Product Name] solution at a total contract value of $[Amount][, after applying a X.X% commercial discount]. The [scope/agreement/package] includes [product-specific deliverables based on type]. Delivery is expected within 4 weeks of contract signing. We are committed to providing exceptional service and look forward to supporting your success with our solutions.&quot;
+</content>
+        <inputs>
+            <apiName>Opportunity</apiName>
+            <definition>SOBJECT://Opportunity</definition>
+            <masterLabel>Opportunity</masterLabel>
+            <referenceName>Input:Opportunity</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>flow://PA_winning_proposals_for_grounding</definition>
+            <parameters>
+                <definition>SOBJECT://Opportunity</definition>
+                <isRequired>true</isRequired>
+                <parameterName>Opportunity</parameterName>
+                <valueExpression>{!$Input:Opportunity}</valueExpression>
+            </parameters>
+            <referenceName>Flow:PA_winning_proposals_for_grounding</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are an expert proposal writer who creates winning business proposals for industrial automation and control systems products. Using the current opportunity details and patterns from our successful past proposals, generate a concise, compelling proposal that fits within a long text area field.
+INPUT DATA
+You will receive:
+Current opportunity details:
+Product/Service: {!$Input:Opportunity.Product__c}
+Opportunity Name: {!$Input:Opportunity.Name}
+Client/Account Name: {!$Input:Opportunity.Account.Name}
+Opportunity Type: {!$Input:Opportunity.Type}
+Examples of successful proposals from closed-won deals: {!$Flow:PA_winning_proposals_for_grounding.Prompt}
+INSTRUCTIONS
+Analyze Patterns From Winning Proposals: Review our successful proposals to identify:
+Standard opening format: &quot;[Client Name] is offered the [Product Name] solution at a total contract value of $[Amount]&quot;
+Typical discount ranges (4-9% when applicable)
+Common inclusions based on product type
+Standard delivery timeframe (typically 4 weeks)
+Consistent closing statement
+Generate Concise Proposal: Create a focused proposal that:
+Begins with our standard opening format
+Includes an appropriate commercial discount if warranted (4-9% range)
+Specifies the exact deliverables based on the product type
+Maintains our standard 4-week delivery commitment
+Ends with our standard closing statement about commitment to service
+Is fully customized to this specific client and opportunity
+Product-Specific Inclusions:
+For SmartVision AI Cameras: Include AI camera configuration, one-year analytics software license, and system calibration
+For AutoGrid SCADA Suite: Include product delivery, 12 months of technical support, and standard SLAs
+For AutoCore PLC Series: Include PLC programming services, 18-month maintenance, and priority technical support
+For FlowLogic HMI Panels: Include touchscreen setup, 24-month warranty, installation support, and optimization services
+For OptiLine Drive Systems: Include product delivery, 12 months of technical support, and standard SLAs
+For AutoSense IoT Gateway: Include gateway installation, 12-month connectivity monitoring, troubleshooting, and uptime guarantees
+OUTPUT EXPECTATIONS
+Produce a concise proposal that:
+Follows our established format and language patterns
+Is between 7-9 sentences total
+Mentions specific deliverables for the selected product
+Includes appropriate commercial discount (when applicable)
+Specifies 4-week delivery timeframe
+Ends with our standard closing statement
+Is ready to paste directly into a long text area field
+FORMAT EXAMPLE
+&quot;[Client Name] is offered the [Product Name] solution at a total contract value of $[Amount][, after applying a X.X% commercial discount]. The [scope/agreement/package] includes [product-specific deliverables based on type]. Delivery is expected within 4 weeks of contract signing. We are committed to providing exceptional service and look forward to supporting your success with our solutions.&quot;
+</content>
+        <inputs>
+            <apiName>Opportunity</apiName>
+            <definition>SOBJECT://Opportunity</definition>
+            <masterLabel>Opportunity</masterLabel>
+            <referenceName>Input:Opportunity</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>flow://PA_winning_proposals_for_grounding</definition>
+            <parameters>
+                <definition>SOBJECT://Opportunity</definition>
+                <isRequired>true</isRequired>
+                <parameterName>Opportunity</parameterName>
+                <valueExpression>{!$Input:Opportunity}</valueExpression>
+            </parameters>
+            <referenceName>Flow:PA_winning_proposals_for_grounding</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_2</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

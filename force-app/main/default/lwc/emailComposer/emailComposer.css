@@ -1,0 +1,245 @@
+/* ----- DASHBOARD LAYOUT ----- */
+.dashboard-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+.column {
+    flex: 1;
+    min-width: 230px;
+    max-width: 25%;
+    background-color: #f8fafc;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    margin-right: 1rem;
+}
+
+.column h2 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #2e3648;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+/* Optional background colors for specific column types */
+.deals { background-color: #e6f0ff; }
+.followups { background-color: #f0fff4; }
+.grow { background-color: #fffce6; }
+.onboarding { background-color: #ffe6ec; }
+
+/* ----- CARD STYLING ----- */
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.card p {
+    margin: 0.5rem 0;
+    color: #4a5568;
+    line-height: 1.4;
+}
+
+.card a {
+    color: #0176d3;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.card a:hover {
+    color: #014486;
+    text-decoration: underline;
+}
+
+.card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+lightning-button {
+    margin-top: 0.25rem;
+}
+
+lightning-button.slds-button {
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ----- MODAL STYLING ----- */
+.slds-modal__container {
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.slds-modal__header {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 1.25rem;
+}
+
+.slds-modal__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2e3648;
+}
+
+.slds-modal__content {
+    padding: 1.5rem !important;
+}
+
+.slds-modal__footer {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-top: 1px solid #f0f0f0;
+    padding: 1rem 1.25rem;
+}
+
+/* ----- INSIGHT BOXES ----- */
+.insight-box {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-top: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    border: 1px solid #f0f0f0;
+    transition: transform 0.2s ease;
+}
+
+.insight-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.insight-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    color: #2e3648;
+}
+
+/* ----- PROGRESS BAR ----- */
+.slds-progress {
+    margin-bottom: 2rem;
+}
+
+.slds-progress__item.slds-is-active .slds-progress__marker {
+    background: #0176d3;
+    border-color: #0176d3;
+}
+
+.slds-progress__item.slds-is-completed .slds-progress__marker {
+    background: #2e844a;
+    border-color: #2e844a;
+}
+
+.slds-progress__label {
+    font-size: 0.875rem;
+    color: #2e3648;
+    font-weight: 500;
+}
+
+/* ----- FILE UPLOAD STYLING ----- */
+.file-upload-container {
+    border: 2px dashed #d8dde6;
+    border-radius: 10px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    background-color: #f8fafc;
+    transition: all 0.2s ease;
+}
+
+.file-upload-container:hover {
+    border-color: #0176d3;
+    background-color: #f3f8ff;
+}
+
+.uploaded-file {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    padding: 0.75rem;
+    background-color: #f3f8ff;
+    border-radius: 8px;
+    border: 1px solid #d8e2f5;
+}
+
+/* ----- FOLLOW-UP BUTTONS ----- */
+.action-button {
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+    display: inline-block;
+}
+
+/* ----- SCROLLING IN MODALS ----- */
+.scrollable-content {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.scrollable-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scrollable-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+    background: #c9c9c9;
+    border-radius: 10px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* ----- EMPTY STATE ----- */
+.empty-column {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: #6c7592;
+    font-style: italic;
+}
+
+/* ----- LOADING SPINNER OVERLAY ----- */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.loading-text {
+    margin-top: 1rem;
+    color: #5a6795;
+    font-size: 0.9rem;
+}

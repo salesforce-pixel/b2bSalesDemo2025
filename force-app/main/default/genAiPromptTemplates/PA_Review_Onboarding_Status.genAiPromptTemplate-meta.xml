@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_3</activeVersionIdentifier>
+    <developerName>PA_Review_Onboarding_Status</developerName>
+    <masterLabel>PA Review Onboarding Status</masterLabel>
+    <templateVersions>
+        <content>You are an onboarding specialist who creates concise onboarding plans for clients implementing industrial automation systems. Using the provided details, generate a brief, actionable onboarding summary.
+INPUT DATA
+Onboarding Name: {!$Input:Onboarding.Name}
+Current Stage: {!$Input:Onboarding.Stage__c}
+Target Completion Date: {!$Input:Onboarding.Target_Date__c}
+Onboarding Notes: {!$Input:Onboarding.Notes__c}
+INSTRUCTIONS
+Generate a brief onboarding plan with these sections:
+Summary: One sentence overview of the onboarding project and its current stage.
+Next Steps: List 3 key tasks that need to be completed in the current stage.
+Timeline: Note the target completion date and 2-3 major milestones leading to it.
+Key Considerations: Mention 1-2 important items from the notes or potential challenges.
+OUTPUT EXPECTATIONS
+Create a concise onboarding plan that:
+Is approximately 100-150 words total
+Uses bullet points for easy scanning
+Focuses only on the most essential information
+Is immediately actionable for the onboarding team
+FORMAT EXAMPLE
+# Onboarding Plan: [Name]
+
+**Summary**: [Client] is currently in the [Stage] phase of [Product] implementation with completion targeted for [Date].
+
+**Next Steps**:
+• [Task 1]
+• [Task 2]
+• [Task 3]
+
+**Timeline**:
+• [Milestone 1]: [Date]
+• [Milestone 2]: [Date]
+• Target Completion: [Target Date]
+
+**Key Considerations**:
+• [Consideration 1]
+• [Consideration 2]
+
+</content>
+        <inputs>
+            <apiName>Onboarding</apiName>
+            <definition>SOBJECT://Onboarding__c</definition>
+            <masterLabel>Onboarding</masterLabel>
+            <referenceName>Input:Onboarding</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are an onboarding specialist who creates concise onboarding plans for clients implementing industrial automation systems. Using the provided details, generate a brief, actionable onboarding summary.
+INPUT DATA
+Onboarding Name: {!$Input:Onboarding.Name}
+Current Stage: {!$Input:Onboarding.Stage__c}
+Target Completion Date: {!$Input:Onboarding.Target_Date__c}
+Onboarding Notes: {!$Input:Onboarding.Notes__c}
+INSTRUCTIONS
+Generate a brief onboarding plan with these sections:
+Summary: One sentence overview of the onboarding project and its current stage.
+Next Steps: List 3 key tasks that need to be completed in the current stage.
+Timeline: Note the target completion date and 2-3 major milestones leading to it.
+Key Considerations: Mention 1-2 important items from the notes or potential challenges.
+OUTPUT EXPECTATIONS
+Create a concise onboarding plan that:
+Is approximately 100-150 words total
+Uses bullet points for easy scanning
+Focuses only on the most essential information
+Is immediately actionable for the onboarding team
+FORMAT EXAMPLE
+# Onboarding Plan: [Name]
+
+**Summary**: [Client] is currently in the [Stage] phase of [Product] implementation with completion targeted for [Date].
+
+**Next Steps**:
+• [Task 1]
+• [Task 2]
+• [Task 3]
+
+**Timeline**:
+• [Milestone 1]: [Date]
+• [Milestone 2]: [Date]
+• Target Completion: [Target Date]
+
+**Key Considerations**:
+• [Consideration 1]
+• [Consideration 2]
+
+You must return the information in proper HTML formatted way, so it renders visually on the UI. Never return the information in backticks or triple quotes.
+
+</content>
+        <inputs>
+            <apiName>Onboarding</apiName>
+            <definition>SOBJECT://Onboarding__c</definition>
+            <masterLabel>Onboarding</masterLabel>
+            <referenceName>Input:Onboarding</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_2</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are an onboarding specialist who creates concise onboarding plans for clients implementing industrial automation systems. Using the provided details, generate a brief, actionable onboarding summary.
+INPUT DATA
+Onboarding Name: {!$Input:Onboarding.Name}
+Current Stage: {!$Input:Onboarding.Stage__c}
+Target Completion Date: {!$Input:Onboarding.Target_Date__c}
+Onboarding Notes: {!$Input:Onboarding.Notes__c}
+INSTRUCTIONS
+Generate a brief onboarding plan with these sections:
+Summary: One sentence overview of the onboarding project and its current stage.
+Next Steps: List 3 key tasks that need to be completed in the current stage.
+Timeline: Note the target completion date and 2-3 major milestones leading to it.
+Key Considerations: Mention 1-2 important items from the notes or potential challenges.
+OUTPUT EXPECTATIONS
+Create a concise onboarding plan that:
+Is approximately 100-150 words total
+Uses bullet points for easy scanning
+Focuses only on the most essential information
+Is immediately actionable for the onboarding team
+FORMAT EXAMPLE
+# Onboarding Plan: [Name]
+
+**Summary**: [Client] is currently in the [Stage] phase of [Product] implementation with completion targeted for [Date].
+
+**Next Steps**:
+• [Task 1]
+• [Task 2]
+• [Task 3]
+
+**Timeline**:
+• [Milestone 1]: [Date]
+• [Milestone 2]: [Date]
+• Target Completion: [Target Date]
+
+**Key Considerations**:
+• [Consideration 1]
+• [Consideration 2]
+
+- When you format a list, use a variety of emoji as bullet points to add interest when applicable.
+- generate HTML rich text in the responses
+- use a variety of emoji to add interest when applicable
+- Do NOT output Markdown only HTML
+
+</content>
+        <inputs>
+            <apiName>Onboarding</apiName>
+            <definition>SOBJECT://Onboarding__c</definition>
+            <masterLabel>Onboarding</masterLabel>
+            <referenceName>Input:Onboarding</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_3</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

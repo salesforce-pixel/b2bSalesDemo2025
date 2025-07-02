@@ -1,0 +1,949 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_7</activeVersionIdentifier>
+    <description>This prompt template generates summaries of deep research on contacts.</description>
+    <developerName>Contact_Intelligence_Demo_Summary_Generator</developerName>
+    <masterLabel>Contact Intelligence Demo Summary Generator</masterLabel>
+    <relatedEntity>Contact</relatedEntity>
+    <templateVersions>
+        <content>Prompt:
+
+You are creating realistic, fictional professional summaries of individuals based on a supplied name and current company. These summaries will be used for demos in professional tools (e.g., CRMs, talent intelligence platforms, etc.). Please generate rich but concise text in a business-formal tone (similar to what you’d find on LinkedIn or in a professional dossier).
+
+
+You will be given:
+
+Name (e.g., “Allison Vega”)
+Current Company (e.g., “Altura Capital”)
+
+
+Please make up the following, ensuring all details are realistic and internally consistent:
+
+Current Job Title at the company (plausible and relevant to the industry)
+Industry or Function focus (e.g., renewable energy finance, enterprise software, digital marketing)
+Years of Experience (rough estimate or phrased as “over X years”)
+Career Highlights
+
+Previous roles (with companies and titles)
+Notable accomplishments (e.g., product launches, business growth, strategic deals, thought leadership)
+Education (school name, degree, and field of study)
+Location (city and state or region; no personal addresses)
+
+
+Here is the format I would like the summary to be in: 
+
+Name: [Supplied Name]  
+Title: [Generated Job Title]  
+Company: [Supplied Company]  
+Location: [Generated City, State]  
+
+Summary:  
+[Name] is a [job title or function], currently serving as [title] at [company], where they focus on [brief focus or responsibility]. With over [X] years of experience in [industry/function], [Name] has held key roles at [previous companies], leading initiatives around [key contributions or accomplishments].  
+
+[Name] earned a [degree] from [university]. They are based in [location], and are known for [optional professional trait or achievement, e.g., &quot;a collaborative leadership style and a track record of scaling operations during periods of high growth&quot;].  
+
+Here is what we know about this person so far: 
+
+{!$RecordSnapshot:Contact.Snapshot}
+
+</content>
+        <inputs>
+            <apiName>objectToSummarize</apiName>
+            <definition>SOBJECT://Contact</definition>
+            <referenceName>Input:Contact</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:Contact.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:Contact</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Prompt:
+
+You are creating realistic, fictional professional summaries of individuals based on a supplied name and current company. These summaries will be used for demos in professional tools (e.g., CRMs, talent intelligence platforms, etc.). Please generate rich but concise text in a business-formal tone (similar to what you’d find on LinkedIn or in a professional dossier).
+
+
+You will be given:
+
+Name (e.g., “Allison Vega”)
+Current Company (e.g., “Altura Capital”)
+
+
+Please make up the following, ensuring all details are realistic and internally consistent:
+
+Current Job Title at the company (plausible and relevant to the industry)
+Industry or Function focus (e.g., renewable energy finance, enterprise software, digital marketing)
+Years of Experience (rough estimate or phrased as “over X years”)
+Career Highlights
+
+Previous roles (with companies and titles)
+Notable accomplishments (e.g., product launches, business growth, strategic deals, thought leadership)
+Education (school name, degree, and field of study)
+Location (city and state or region; no personal addresses)
+
+
+Here is the format I would like the summary to be in: 
+
+Name: [Supplied Name]  
+Title: [Generated Job Title]  
+Company: [Supplied Company]  
+Location: [Generated City, State]  
+
+Summary:  
+[Name] is a [job title or function], currently serving as [title] at [company], where they focus on [brief focus or responsibility]. With over [X] years of experience in [industry/function], [Name] has held key roles at [previous companies], leading initiatives around [key contributions or accomplishments].  
+
+[Name] earned a [degree] from [university]. They are based in [location], and are known for [optional professional trait or achievement, e.g., &quot;a collaborative leadership style and a track record of scaling operations during periods of high growth&quot;].  
+
+Here is what we know about this person so far: 
+
+{!$RecordSnapshot:Contact.Snapshot}
+
+
+If the contact above is named John Finn please use the following information below to create your summary: 
+
+John F. Finn: Comprehensive Professional Profile
+Current Title:
+Chairman, Gardner, Inc.
+Professional Summary
+John F. Finn is a highly respected executive with over five decades of leadership experience in supply chain management, asset management, and corporate governance. He is best known for his long-standing role as Chairman of Gardner, Inc., one of the largest family-owned parts distributors and value-added service providers for the outdoor power equipment industry in the United States. Finn has also held significant board and trustee positions at major corporations, mutual funds, and nonprofit organizations, earning a reputation for strategic insight and governance expertise13467.
+Key Roles and Experience
+Chairman, Gardner, Inc. (1974–Present):
+Leads a major supply chain management company with a national footprint, overseeing strategic growth, operational excellence, and industry leadership. Gardner, Inc. operates multiple distribution centers, employs over 400 associates, and serves all 50 U.S. states34.
+Chairman of the Board, J.P. Morgan Asset Management (Unified J.P. Morgan Funds Board):
+Since January 2022, Finn has chaired the unified board overseeing 169 mutual funds and ETFs with nearly $1 trillion in assets. He first joined the board in 1998, serving in various leadership roles, including chair of the governance committee and member of audit and ETF committees1267.
+Lead Director, Cardinal Health (Retired):
+Served as lead director for 21 years at Cardinal Health, a Fortune 20 healthcare services company, where he provided governance, audit, and nominating committee leadership347.
+Director, Greif, Inc.:
+Board member at Greif, a global leader in industrial packaging, serving on audit and nominating committees. Recognized for his expertise in finance, operations, strategy, risk management, and mergers and acquisitions7.
+Trustee, J.P. Morgan Mutual Funds:
+Oversight of one of the largest mutual fund complexes in the U.S., focusing on governance, compliance, and fiduciary responsibilities1267.
+Director, Columbus Association for the Performing Arts (CAPA):
+Supports the arts and community initiatives in Columbus, Ohio347.
+Other Notable Board and Trustee Roles
+The Crane Group
+Fisher College of Business (The Ohio State University)
+The Columbus Academy
+Columbus School for Girls
+The Johns Company
+Saint Ann’s Hospital
+Mount Carmel Hospital
+St. Charles Preparatory
+I Know I Can (college access program for inner-city youth)34
+Professional Strengths and Reputation
+Corporate Governance:
+Extensive experience chairing and serving on governance, audit, and nominating committees for public and private companies, as well as nonprofit organizations7.
+Strategic Leadership:
+Recognized for guiding companies through complex operational, financial, and regulatory environments, with a focus on sustainable growth and profitability7.
+Industry Expertise:
+Deep knowledge in supply chain management, asset management, healthcare, industrial packaging, and education sectors347.
+Community Engagement:
+Strong supporter of educational and cultural institutions, with a history of board service to schools, colleges, and arts organizations347.
+Education
+BA, Economics – The Ohio State University
+MBA, Finance – Harvard Business School1345
+Recognition and Honors
+Nominee, Trustee of the Year (2023), Fund Directions Mutual Fund &amp; ETF Awards:
+Acknowledged for excellence and leadership in mutual fund governance2.
+Summary Table: Key Board and Leadership Roles
+
+
+
+Additional Context
+Finn’s leadership at Gardner, Inc. has helped the company become a trusted industry leader and brand steward, with a focus on channel management and value-added services34.
+His board experience spans public companies, private enterprises, and nonprofit organizations, reflecting a broad and deep understanding of corporate governance and community service7.
+Finn’s educational background from two prestigious institutions underpins his expertise in economics and finance1345.
+In summary:
+John F. Finn is a distinguished executive and board leader with a legacy of impact in supply chain management, asset management, healthcare, and community service. His governance, strategic vision, and commitment to both business excellence and civic engagement set him apart as a prominent figure in American business and philanthropy.
+</content>
+        <inputs>
+            <apiName>objectToSummarize</apiName>
+            <definition>SOBJECT://Contact</definition>
+            <referenceName>Input:Contact</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:Contact.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:Contact</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_2</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Prompt:
+
+You are creating realistic, fictional professional summaries of individuals based on a supplied name and current company. These summaries will be used for demos in professional tools (e.g., CRMs, talent intelligence platforms, etc.). Please generate rich but concise text in a business-formal tone (similar to what you’d find on LinkedIn or in a professional dossier).
+
+
+You will be given:
+
+Name (e.g., “Allison Vega”)
+Current Company (e.g., “Altura Capital”)
+
+
+Please make up the following, ensuring all details are realistic and internally consistent:
+
+Current Job Title at the company (plausible and relevant to the industry)
+Industry or Function focus (e.g., renewable energy finance, enterprise software, digital marketing)
+Years of Experience (rough estimate or phrased as “over X years”)
+Career Highlights
+
+Previous roles (with companies and titles)
+Notable accomplishments (e.g., product launches, business growth, strategic deals, thought leadership)
+Education (school name, degree, and field of study)
+Location (city and state or region; no personal addresses)
+
+
+Here is the format I would like the summary to be in: 
+
+Business Contact Summary Template
+Name: [Supplied Name]
+Title: [Generated Job Title]
+Company: [Supplied Company]
+Location: [Generated City, State]
+Professional Overview
+[Name] is a seasoned [job title or function], currently serving as [title] at [company].
+Focuses on [brief focus or responsibility], driving key initiatives that align with company goals.
+Possesses over [X] years of experience in [industry/function], with a proven track record of success.
+Career Highlights
+Held pivotal roles at [previous companies], contributing to [specific projects, initiatives, or transformations].
+Led efforts in [key contributions or accomplishments], such as [examples: revenue growth, operational efficiency, market expansion].
+Recognized for expertise in [specific skills or domains], including [examples: strategic planning, team leadership, digital transformation].
+Skills &amp; Expertise
+[Skill or domain 1] - [Brief explanation or example of application].
+[Skill or domain 2] - [Brief explanation or example of application].
+[Skill or domain 3] - [Brief explanation or example of application].
+Additional competencies include [list any relevant certifications, technical skills, or languages].
+Education &amp; Credentials
+Holds a [degree] in [field] from [university].
+Additional certifications or professional training include [certifications, courses, or relevant qualifications].
+Location &amp; Professional Traits
+Based in [location], with experience navigating [regional market characteristics or industry environment].
+Known for [optional professional trait or achievement], such as:
+A collaborative leadership style that fosters team engagement.
+A data-driven approach to decision-making.
+A track record of scaling operations during periods of high growth.
+Strong communication and stakeholder management skills.
+Additional Notes (Optional)
+Active member of [industry associations or professional groups].
+Contributor to [publications, conferences, or thought leadership platforms].
+Involved in [community initiatives, mentorship, or volunteer work].
+
+Here is what we know about this person so far: 
+
+{!$RecordSnapshot:Contact.Snapshot}
+
+
+If the contact above is named John Finn please use the following information below to create your summary: 
+
+John F. Finn: Comprehensive Professional Profile
+Current Title:
+Chairman, Gardner, Inc.
+Professional Summary
+John F. Finn is a highly respected executive with over five decades of leadership experience in supply chain management, asset management, and corporate governance. He is best known for his long-standing role as Chairman of Gardner, Inc., one of the largest family-owned parts distributors and value-added service providers for the outdoor power equipment industry in the United States. Finn has also held significant board and trustee positions at major corporations, mutual funds, and nonprofit organizations, earning a reputation for strategic insight and governance expertise13467.
+Key Roles and Experience
+Chairman, Gardner, Inc. (1974–Present):
+Leads a major supply chain management company with a national footprint, overseeing strategic growth, operational excellence, and industry leadership. Gardner, Inc. operates multiple distribution centers, employs over 400 associates, and serves all 50 U.S. states34.
+Chairman of the Board, J.P. Morgan Asset Management (Unified J.P. Morgan Funds Board):
+Since January 2022, Finn has chaired the unified board overseeing 169 mutual funds and ETFs with nearly $1 trillion in assets. He first joined the board in 1998, serving in various leadership roles, including chair of the governance committee and member of audit and ETF committees1267.
+Lead Director, Cardinal Health (Retired):
+Served as lead director for 21 years at Cardinal Health, a Fortune 20 healthcare services company, where he provided governance, audit, and nominating committee leadership347.
+Director, Greif, Inc.:
+Board member at Greif, a global leader in industrial packaging, serving on audit and nominating committees. Recognized for his expertise in finance, operations, strategy, risk management, and mergers and acquisitions7.
+Trustee, J.P. Morgan Mutual Funds:
+Oversight of one of the largest mutual fund complexes in the U.S., focusing on governance, compliance, and fiduciary responsibilities1267.
+Director, Columbus Association for the Performing Arts (CAPA):
+Supports the arts and community initiatives in Columbus, Ohio347.
+Other Notable Board and Trustee Roles
+The Crane Group
+Fisher College of Business (The Ohio State University)
+The Columbus Academy
+Columbus School for Girls
+The Johns Company
+Saint Ann’s Hospital
+Mount Carmel Hospital
+St. Charles Preparatory
+I Know I Can (college access program for inner-city youth)34
+Professional Strengths and Reputation
+Corporate Governance:
+Extensive experience chairing and serving on governance, audit, and nominating committees for public and private companies, as well as nonprofit organizations7.
+Strategic Leadership:
+Recognized for guiding companies through complex operational, financial, and regulatory environments, with a focus on sustainable growth and profitability7.
+Industry Expertise:
+Deep knowledge in supply chain management, asset management, healthcare, industrial packaging, and education sectors347.
+Community Engagement:
+Strong supporter of educational and cultural institutions, with a history of board service to schools, colleges, and arts organizations347.
+Education
+BA, Economics – The Ohio State University
+MBA, Finance – Harvard Business School1345
+Recognition and Honors
+Nominee, Trustee of the Year (2023), Fund Directions Mutual Fund &amp; ETF Awards:
+Acknowledged for excellence and leadership in mutual fund governance2.
+Summary Table: Key Board and Leadership Roles
+
+
+
+Additional Context
+Finn’s leadership at Gardner, Inc. has helped the company become a trusted industry leader and brand steward, with a focus on channel management and value-added services34.
+His board experience spans public companies, private enterprises, and nonprofit organizations, reflecting a broad and deep understanding of corporate governance and community service7.
+Finn’s educational background from two prestigious institutions underpins his expertise in economics and finance1345.
+In summary:
+John F. Finn is a distinguished executive and board leader with a legacy of impact in supply chain management, asset management, healthcare, and community service. His governance, strategic vision, and commitment to both business excellence and civic engagement set him apart as a prominent figure in American business and philanthropy.
+</content>
+        <inputs>
+            <apiName>objectToSummarize</apiName>
+            <definition>SOBJECT://Contact</definition>
+            <referenceName>Input:Contact</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:Contact.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:Contact</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_3</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Prompt:
+
+You are creating realistic, fictional professional summaries of individuals based on a supplied name and current company. These summaries will be used for demos in professional tools (e.g., CRMs, talent intelligence platforms, etc.). Please generate rich but concise text in a business-formal tone (similar to what you’d find on LinkedIn or in a professional dossier). Please give your final answer in HTML formatting. Here are the HTML guidelines: 
+ &quot;&quot;&quot;
+ Formatting Guidelines: &quot;&quot;&quot;
+ 1. Display fields with &quot;hyperlink&quot; information as links. Example:
+ &quot;value&quot;: &quot;Dorothy Gale&quot;,
+ &quot;hyperlink&quot;: &quot;&lt;a href=&apos;/001XXXXXXXXXXXXXXX&apos;&gt;Dorothy Gale&lt;/a&gt;&quot;
+ should be mentioned in the summary as: &lt;a href=&apos;/001XXXXXXXXXXXXXXX&apos;&gt;Dorothy Gale&lt;/a&gt;
+ 2. Each section name should be in bold and inline in the paragraph: &quot;&lt;p&gt;&lt;strong&gt;Opportunities&lt;/strong&gt; Top opportunities show...&lt;/p&gt;&quot;
+ 3. When appropriate, add emphasis to certain pieces of text, up to 2 or 3 words at a time, by italicizing adjective + noun or verb + object combinations.
+ 
+ &quot;&quot;&quot;
+ HTML Generation Guidelines: &quot;&quot;&quot;
+ When generating the HTML, you must use semantic elements whenever possible:
+ 1. &lt;p&gt; for paragraphs
+ 2. &lt;a&gt; for links
+ 3. &lt;strong&gt; for bolded content
+ 4. &lt;em&gt; for italicized content
+ 5. Don&apos;t use any heading tags.
+
+
+You will be given:
+
+Name (e.g., “Allison Vega”)
+Current Company (e.g., “Altura Capital”)
+
+
+Please make up the following, ensuring all details are realistic and internally consistent:
+
+Current Job Title at the company (plausible and relevant to the industry)
+Industry or Function focus (e.g., renewable energy finance, enterprise software, digital marketing)
+Years of Experience (rough estimate or phrased as “over X years”)
+Career Highlights
+
+Previous roles (with companies and titles)
+Notable accomplishments (e.g., product launches, business growth, strategic deals, thought leadership)
+Education (school name, degree, and field of study)
+Location (city and state or region; no personal addresses)
+
+
+Here is the format I would like the summary to be in: 
+
+Business Contact Summary Template
+Name: [Supplied Name]
+Title: [Generated Job Title]
+Company: [Supplied Company]
+Location: [Generated City, State]
+Professional Overview
+[Name] is a seasoned [job title or function], currently serving as [title] at [company].
+Focuses on [brief focus or responsibility], driving key initiatives that align with company goals.
+Possesses over [X] years of experience in [industry/function], with a proven track record of success.
+Career Highlights
+Held pivotal roles at [previous companies], contributing to [specific projects, initiatives, or transformations].
+Led efforts in [key contributions or accomplishments], such as [examples: revenue growth, operational efficiency, market expansion].
+Recognized for expertise in [specific skills or domains], including [examples: strategic planning, team leadership, digital transformation].
+Skills &amp; Expertise
+[Skill or domain 1] - [Brief explanation or example of application].
+[Skill or domain 2] - [Brief explanation or example of application].
+[Skill or domain 3] - [Brief explanation or example of application].
+Additional competencies include [list any relevant certifications, technical skills, or languages].
+Education &amp; Credentials
+Holds a [degree] in [field] from [university].
+Additional certifications or professional training include [certifications, courses, or relevant qualifications].
+Location &amp; Professional Traits
+Based in [location], with experience navigating [regional market characteristics or industry environment].
+Known for [optional professional trait or achievement], such as:
+A collaborative leadership style that fosters team engagement.
+A data-driven approach to decision-making.
+A track record of scaling operations during periods of high growth.
+Strong communication and stakeholder management skills.
+Additional Notes (Optional)
+Active member of [industry associations or professional groups].
+Contributor to [publications, conferences, or thought leadership platforms].
+Involved in [community initiatives, mentorship, or volunteer work].
+
+Here is what we know about this person so far: 
+
+{!$RecordSnapshot:Contact.Snapshot}
+
+
+If the contact above is named John Finn please use the following information below to create your summary: 
+
+John F. Finn: Comprehensive Professional Profile
+Current Title:
+Chairman, Gardner, Inc.
+Professional Summary
+John F. Finn is a highly respected executive with over five decades of leadership experience in supply chain management, asset management, and corporate governance. He is best known for his long-standing role as Chairman of Gardner, Inc., one of the largest family-owned parts distributors and value-added service providers for the outdoor power equipment industry in the United States. Finn has also held significant board and trustee positions at major corporations, mutual funds, and nonprofit organizations, earning a reputation for strategic insight and governance expertise13467.
+Key Roles and Experience
+Chairman, Gardner, Inc. (1974–Present):
+Leads a major supply chain management company with a national footprint, overseeing strategic growth, operational excellence, and industry leadership. Gardner, Inc. operates multiple distribution centers, employs over 400 associates, and serves all 50 U.S. states34.
+Chairman of the Board, J.P. Morgan Asset Management (Unified J.P. Morgan Funds Board):
+Since January 2022, Finn has chaired the unified board overseeing 169 mutual funds and ETFs with nearly $1 trillion in assets. He first joined the board in 1998, serving in various leadership roles, including chair of the governance committee and member of audit and ETF committees1267.
+Lead Director, Cardinal Health (Retired):
+Served as lead director for 21 years at Cardinal Health, a Fortune 20 healthcare services company, where he provided governance, audit, and nominating committee leadership347.
+Director, Greif, Inc.:
+Board member at Greif, a global leader in industrial packaging, serving on audit and nominating committees. Recognized for his expertise in finance, operations, strategy, risk management, and mergers and acquisitions7.
+Trustee, J.P. Morgan Mutual Funds:
+Oversight of one of the largest mutual fund complexes in the U.S., focusing on governance, compliance, and fiduciary responsibilities1267.
+Director, Columbus Association for the Performing Arts (CAPA):
+Supports the arts and community initiatives in Columbus, Ohio347.
+Other Notable Board and Trustee Roles
+The Crane Group
+Fisher College of Business (The Ohio State University)
+The Columbus Academy
+Columbus School for Girls
+The Johns Company
+Saint Ann’s Hospital
+Mount Carmel Hospital
+St. Charles Preparatory
+I Know I Can (college access program for inner-city youth)34
+Professional Strengths and Reputation
+Corporate Governance:
+Extensive experience chairing and serving on governance, audit, and nominating committees for public and private companies, as well as nonprofit organizations7.
+Strategic Leadership:
+Recognized for guiding companies through complex operational, financial, and regulatory environments, with a focus on sustainable growth and profitability7.
+Industry Expertise:
+Deep knowledge in supply chain management, asset management, healthcare, industrial packaging, and education sectors347.
+Community Engagement:
+Strong supporter of educational and cultural institutions, with a history of board service to schools, colleges, and arts organizations347.
+Education
+BA, Economics – The Ohio State University
+MBA, Finance – Harvard Business School1345
+Recognition and Honors
+Nominee, Trustee of the Year (2023), Fund Directions Mutual Fund &amp; ETF Awards:
+Acknowledged for excellence and leadership in mutual fund governance2.
+Summary Table: Key Board and Leadership Roles
+
+
+
+Additional Context
+Finn’s leadership at Gardner, Inc. has helped the company become a trusted industry leader and brand steward, with a focus on channel management and value-added services34.
+His board experience spans public companies, private enterprises, and nonprofit organizations, reflecting a broad and deep understanding of corporate governance and community service7.
+Finn’s educational background from two prestigious institutions underpins his expertise in economics and finance1345.
+In summary:
+John F. Finn is a distinguished executive and board leader with a legacy of impact in supply chain management, asset management, healthcare, and community service. His governance, strategic vision, and commitment to both business excellence and civic engagement set him apart as a prominent figure in American business and philanthropy.
+</content>
+        <inputs>
+            <apiName>objectToSummarize</apiName>
+            <definition>SOBJECT://Contact</definition>
+            <referenceName>Input:Contact</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:Contact.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:Contact</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_5</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Prompt:
+
+You are creating realistic, fictional professional summaries of individuals based on a supplied name and current company. These summaries will be used for demos in professional tools (e.g., CRMs, talent intelligence platforms, etc.). Please generate rich but concise text in a business-formal tone (similar to what you’d find on LinkedIn or in a professional dossier). Please give your final answer in HTML formatting. Here are the HTML guidelines: 
+
+ &quot;&quot;&quot; Formatting Guidelines: &quot;&quot;&quot;
+ 1. Display fields with &quot;hyperlink&quot; information as links. Example:
+ &quot;value&quot;: &quot;Dorothy Gale&quot;,
+ &quot;hyperlink&quot;: &quot;&lt;a href=&apos;/001XXXXXXXXXXXXXXX&apos;&gt;Dorothy Gale&lt;/a&gt;&quot;
+ should be mentioned in the summary as: &lt;a href=&apos;/001XXXXXXXXXXXXXXX&apos;&gt;Dorothy Gale&lt;/a&gt;
+ 2. Each section name should be in bold and inline in the paragraph: &quot;&lt;p&gt;&lt;strong&gt;Opportunities&lt;/strong&gt; Top opportunities show...&lt;/p&gt;&quot;
+ 3. When appropriate, add emphasis to certain pieces of text, up to 2 or 3 words at a time, by italicizing adjective + noun or verb + object combinations.
+ 
+ &quot;&quot;&quot;HTML Generation Guidelines: &quot;&quot;&quot;
+ When generating the HTML, you must use semantic elements whenever possible:
+ 1. &lt;p&gt; for paragraphs
+ 2. &lt;a&gt; for links
+ 3. &lt;strong&gt; for bolded content
+ 4. &lt;em&gt; for italicized content
+ 5. Don&apos;t use any heading tags.
+ 6. Never start or end your generation with ```html
+
+
+You will be given:
+
+Name (e.g., “Allison Vega”)
+Current Company (e.g., “Altura Capital”)
+
+
+Please make up the following, ensuring all details are realistic and internally consistent:
+
+Current Job Title at the company (plausible and relevant to the industry)
+Industry or Function focus (e.g., renewable energy finance, enterprise software, digital marketing)
+Years of Experience (rough estimate or phrased as “over X years”)
+Career Highlights
+
+Previous roles (with companies and titles)
+Notable accomplishments (e.g., product launches, business growth, strategic deals, thought leadership)
+Education (school name, degree, and field of study)
+Location (city and state or region; no personal addresses)
+
+
+Here is the format I would like the summary to be in: 
+
+Business Contact Summary Template
+Name: [Supplied Name]
+Title: [Generated Job Title]
+Company: [Supplied Company]
+Location: [Generated City, State]
+Professional Overview
+[Name] is a seasoned [job title or function], currently serving as [title] at [company].
+Focuses on [brief focus or responsibility], driving key initiatives that align with company goals.
+Possesses over [X] years of experience in [industry/function], with a proven track record of success.
+Career Highlights
+Held pivotal roles at [previous companies], contributing to [specific projects, initiatives, or transformations].
+Led efforts in [key contributions or accomplishments], such as [examples: revenue growth, operational efficiency, market expansion].
+Recognized for expertise in [specific skills or domains], including [examples: strategic planning, team leadership, digital transformation].
+Skills &amp; Expertise
+[Skill or domain 1] - [Brief explanation or example of application].
+[Skill or domain 2] - [Brief explanation or example of application].
+[Skill or domain 3] - [Brief explanation or example of application].
+Additional competencies include [list any relevant certifications, technical skills, or languages].
+Education &amp; Credentials
+Holds a [degree] in [field] from [university].
+Additional certifications or professional training include [certifications, courses, or relevant qualifications].
+Location &amp; Professional Traits
+Based in [location], with experience navigating [regional market characteristics or industry environment].
+Known for [optional professional trait or achievement], such as:
+A collaborative leadership style that fosters team engagement.
+A data-driven approach to decision-making.
+A track record of scaling operations during periods of high growth.
+Strong communication and stakeholder management skills.
+Additional Notes (Optional)
+Active member of [industry associations or professional groups].
+Contributor to [publications, conferences, or thought leadership platforms].
+Involved in [community initiatives, mentorship, or volunteer work].
+
+Here is what we know about this person so far: 
+
+{!$RecordSnapshot:Contact.Snapshot}
+
+
+If the contact above is named John Finn please use the following information below to create your summary: 
+
+John F. Finn: Comprehensive Professional Profile
+Current Title:
+Chairman, Gardner, Inc.
+Professional Summary
+John F. Finn is a highly respected executive with over five decades of leadership experience in supply chain management, asset management, and corporate governance. He is best known for his long-standing role as Chairman of Gardner, Inc., one of the largest family-owned parts distributors and value-added service providers for the outdoor power equipment industry in the United States. Finn has also held significant board and trustee positions at major corporations, mutual funds, and nonprofit organizations, earning a reputation for strategic insight and governance expertise13467.
+Key Roles and Experience
+Chairman, Gardner, Inc. (1974–Present):
+Leads a major supply chain management company with a national footprint, overseeing strategic growth, operational excellence, and industry leadership. Gardner, Inc. operates multiple distribution centers, employs over 400 associates, and serves all 50 U.S. states34.
+Chairman of the Board, J.P. Morgan Asset Management (Unified J.P. Morgan Funds Board):
+Since January 2022, Finn has chaired the unified board overseeing 169 mutual funds and ETFs with nearly $1 trillion in assets. He first joined the board in 1998, serving in various leadership roles, including chair of the governance committee and member of audit and ETF committees1267.
+Lead Director, Cardinal Health (Retired):
+Served as lead director for 21 years at Cardinal Health, a Fortune 20 healthcare services company, where he provided governance, audit, and nominating committee leadership347.
+Director, Greif, Inc.:
+Board member at Greif, a global leader in industrial packaging, serving on audit and nominating committees. Recognized for his expertise in finance, operations, strategy, risk management, and mergers and acquisitions7.
+Trustee, J.P. Morgan Mutual Funds:
+Oversight of one of the largest mutual fund complexes in the U.S., focusing on governance, compliance, and fiduciary responsibilities1267.
+Director, Columbus Association for the Performing Arts (CAPA):
+Supports the arts and community initiatives in Columbus, Ohio347.
+Other Notable Board and Trustee Roles
+The Crane Group
+Fisher College of Business (The Ohio State University)
+The Columbus Academy
+Columbus School for Girls
+The Johns Company
+Saint Ann’s Hospital
+Mount Carmel Hospital
+St. Charles Preparatory
+I Know I Can (college access program for inner-city youth)34
+Professional Strengths and Reputation
+Corporate Governance:
+Extensive experience chairing and serving on governance, audit, and nominating committees for public and private companies, as well as nonprofit organizations7.
+Strategic Leadership:
+Recognized for guiding companies through complex operational, financial, and regulatory environments, with a focus on sustainable growth and profitability7.
+Industry Expertise:
+Deep knowledge in supply chain management, asset management, healthcare, industrial packaging, and education sectors347.
+Community Engagement:
+Strong supporter of educational and cultural institutions, with a history of board service to schools, colleges, and arts organizations347.
+Education
+BA, Economics – The Ohio State University
+MBA, Finance – Harvard Business School1345
+Recognition and Honors
+Nominee, Trustee of the Year (2023), Fund Directions Mutual Fund &amp; ETF Awards:
+Acknowledged for excellence and leadership in mutual fund governance2.
+Summary Table: Key Board and Leadership Roles
+
+
+
+Additional Context
+Finn’s leadership at Gardner, Inc. has helped the company become a trusted industry leader and brand steward, with a focus on channel management and value-added services34.
+His board experience spans public companies, private enterprises, and nonprofit organizations, reflecting a broad and deep understanding of corporate governance and community service7.
+Finn’s educational background from two prestigious institutions underpins his expertise in economics and finance1345.
+In summary:
+John F. Finn is a distinguished executive and board leader with a legacy of impact in supply chain management, asset management, healthcare, and community service. His governance, strategic vision, and commitment to both business excellence and civic engagement set him apart as a prominent figure in American business and philanthropy.
+</content>
+        <inputs>
+            <apiName>objectToSummarize</apiName>
+            <definition>SOBJECT://Contact</definition>
+            <referenceName>Input:Contact</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:Contact.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:Contact</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_6</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Prompt:
+
+You are creating realistic, fictional professional summaries of individuals based on a supplied name and current company. These summaries will be used for demos in professional tools (e.g., CRMs, talent intelligence platforms, etc.). Please generate rich but concise text in a business-formal tone (similar to what you’d find on LinkedIn or in a professional dossier). Please give your final answer in HTML formatting. 
+
+
+You will be given:
+
+Name (e.g., “Allison Vega”)
+Current Company (e.g., “Altura Capital”)
+
+
+Please make up the following, ensuring all details are realistic and internally consistent:
+
+Current Job Title at the company (plausible and relevant to the industry)
+Industry or Function focus (e.g., renewable energy finance, enterprise software, digital marketing)
+Years of Experience (rough estimate or phrased as “over X years”)
+Career Highlights
+
+Previous roles (with companies and titles)
+Notable accomplishments (e.g., product launches, business growth, strategic deals, thought leadership)
+Education (school name, degree, and field of study)
+Location (city and state or region; no personal addresses)
+
+
+Here is the format I would like the summary to be in: 
+
+Business Contact Summary Template
+Name: [Supplied Name]
+Title: [Generated Job Title]
+Company: [Supplied Company]
+Location: [Generated City, State]
+Professional Overview
+[Name] is a seasoned [job title or function], currently serving as [title] at [company].
+Focuses on [brief focus or responsibility], driving key initiatives that align with company goals.
+Possesses over [X] years of experience in [industry/function], with a proven track record of success.
+Career Highlights
+Held pivotal roles at [previous companies], contributing to [specific projects, initiatives, or transformations].
+Led efforts in [key contributions or accomplishments], such as [examples: revenue growth, operational efficiency, market expansion].
+Recognized for expertise in [specific skills or domains], including [examples: strategic planning, team leadership, digital transformation].
+Skills &amp; Expertise
+[Skill or domain 1] - [Brief explanation or example of application].
+[Skill or domain 2] - [Brief explanation or example of application].
+[Skill or domain 3] - [Brief explanation or example of application].
+Additional competencies include [list any relevant certifications, technical skills, or languages].
+Education &amp; Credentials
+Holds a [degree] in [field] from [university].
+Additional certifications or professional training include [certifications, courses, or relevant qualifications].
+Location &amp; Professional Traits
+Based in [location], with experience navigating [regional market characteristics or industry environment].
+Known for [optional professional trait or achievement], such as:
+A collaborative leadership style that fosters team engagement.
+A data-driven approach to decision-making.
+A track record of scaling operations during periods of high growth.
+Strong communication and stakeholder management skills.
+Additional Notes (Optional)
+Active member of [industry associations or professional groups].
+Contributor to [publications, conferences, or thought leadership platforms].
+Involved in [community initiatives, mentorship, or volunteer work].
+
+Here is what we know about this person so far: 
+
+{!$RecordSnapshot:Contact.Snapshot}
+
+
+If the contact above is named John Finn please use the following information below to create your summary: 
+
+John F. Finn: Comprehensive Professional Profile
+Current Title:
+Chairman, Gardner, Inc.
+Professional Summary
+John F. Finn is a highly respected executive with over five decades of leadership experience in supply chain management, asset management, and corporate governance. He is best known for his long-standing role as Chairman of Gardner, Inc., one of the largest family-owned parts distributors and value-added service providers for the outdoor power equipment industry in the United States. Finn has also held significant board and trustee positions at major corporations, mutual funds, and nonprofit organizations, earning a reputation for strategic insight and governance expertise13467.
+Key Roles and Experience
+Chairman, Gardner, Inc. (1974–Present):
+Leads a major supply chain management company with a national footprint, overseeing strategic growth, operational excellence, and industry leadership. Gardner, Inc. operates multiple distribution centers, employs over 400 associates, and serves all 50 U.S. states34.
+Chairman of the Board, J.P. Morgan Asset Management (Unified J.P. Morgan Funds Board):
+Since January 2022, Finn has chaired the unified board overseeing 169 mutual funds and ETFs with nearly $1 trillion in assets. He first joined the board in 1998, serving in various leadership roles, including chair of the governance committee and member of audit and ETF committees1267.
+Lead Director, Cardinal Health (Retired):
+Served as lead director for 21 years at Cardinal Health, a Fortune 20 healthcare services company, where he provided governance, audit, and nominating committee leadership347.
+Director, Greif, Inc.:
+Board member at Greif, a global leader in industrial packaging, serving on audit and nominating committees. Recognized for his expertise in finance, operations, strategy, risk management, and mergers and acquisitions7.
+Trustee, J.P. Morgan Mutual Funds:
+Oversight of one of the largest mutual fund complexes in the U.S., focusing on governance, compliance, and fiduciary responsibilities1267.
+Director, Columbus Association for the Performing Arts (CAPA):
+Supports the arts and community initiatives in Columbus, Ohio347.
+Other Notable Board and Trustee Roles
+The Crane Group
+Fisher College of Business (The Ohio State University)
+The Columbus Academy
+Columbus School for Girls
+The Johns Company
+Saint Ann’s Hospital
+Mount Carmel Hospital
+St. Charles Preparatory
+I Know I Can (college access program for inner-city youth)34
+Professional Strengths and Reputation
+Corporate Governance:
+Extensive experience chairing and serving on governance, audit, and nominating committees for public and private companies, as well as nonprofit organizations7.
+Strategic Leadership:
+Recognized for guiding companies through complex operational, financial, and regulatory environments, with a focus on sustainable growth and profitability7.
+Industry Expertise:
+Deep knowledge in supply chain management, asset management, healthcare, industrial packaging, and education sectors347.
+Community Engagement:
+Strong supporter of educational and cultural institutions, with a history of board service to schools, colleges, and arts organizations347.
+Education
+BA, Economics – The Ohio State University
+MBA, Finance – Harvard Business School1345
+Recognition and Honors
+Nominee, Trustee of the Year (2023), Fund Directions Mutual Fund &amp; ETF Awards:
+Acknowledged for excellence and leadership in mutual fund governance2.
+Summary Table: Key Board and Leadership Roles
+
+
+
+Additional Context
+Finn’s leadership at Gardner, Inc. has helped the company become a trusted industry leader and brand steward, with a focus on channel management and value-added services34.
+His board experience spans public companies, private enterprises, and nonprofit organizations, reflecting a broad and deep understanding of corporate governance and community service7.
+Finn’s educational background from two prestigious institutions underpins his expertise in economics and finance1345.
+In summary:
+John F. Finn is a distinguished executive and board leader with a legacy of impact in supply chain management, asset management, healthcare, and community service. His governance, strategic vision, and commitment to both business excellence and civic engagement set him apart as a prominent figure in American business and philanthropy.
+</content>
+        <inputs>
+            <apiName>objectToSummarize</apiName>
+            <definition>SOBJECT://Contact</definition>
+            <referenceName>Input:Contact</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:Contact.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:Contact</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_4</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Prompt:
+
+You are creating realistic, fictional professional summaries of individuals based on a supplied name and current company. These summaries will be used for demos in professional tools (e.g., CRMs, talent intelligence platforms, etc.). Please generate rich but concise text in a business-formal tone (similar to what you’d find on LinkedIn or in a professional dossier). Please give your final answer in HTML formatting. Here are the HTML guidelines: 
+
+ &quot;&quot;&quot; Formatting Guidelines: &quot;&quot;&quot;
+ 1. Display fields with &quot;hyperlink&quot; information as links. Example:
+ &quot;value&quot;: &quot;Dorothy Gale&quot;,
+ &quot;hyperlink&quot;: &quot;&lt;a href=&apos;/001XXXXXXXXXXXXXXX&apos;&gt;Dorothy Gale&lt;/a&gt;&quot;
+ should be mentioned in the summary as: &lt;a href=&apos;/001XXXXXXXXXXXXXXX&apos;&gt;Dorothy Gale&lt;/a&gt;
+ 2. Each section name should be in bold and inline in the paragraph: &quot;&lt;p&gt;&lt;strong&gt;Opportunities&lt;/strong&gt; Top opportunities show...&lt;/p&gt;&quot;
+ 3. When appropriate, add emphasis to certain pieces of text, up to 2 or 3 words at a time, by italicizing adjective + noun or verb + object combinations.
+ 
+ &quot;&quot;&quot;HTML Generation Guidelines: &quot;&quot;&quot;
+ When generating the HTML, you must use semantic elements whenever possible:
+ 1. &lt;p&gt; for paragraphs
+ 2. &lt;a&gt; for links
+ 3. &lt;strong&gt; for bolded content
+ 4. &lt;em&gt; for italicized content
+ 5. Don&apos;t use any heading tags.
+ 6. Never start or end your generation with ```html
+
+
+You will be given:
+
+Name (e.g., “Allison Vega”)
+Current Company (e.g., “Altura Capital”)
+
+
+Please make up the following, ensuring all details are realistic and internally consistent:
+
+Current Job Title at the company (plausible and relevant to the industry)
+Industry or Function focus (e.g., renewable energy finance, enterprise software, digital marketing)
+Years of Experience (rough estimate or phrased as “over X years”)
+Career Highlights
+
+Previous roles (with companies and titles)
+Notable accomplishments (e.g., product launches, business growth, strategic deals, thought leadership)
+Education (school name, degree, and field of study)
+Location (city and state or region; no personal addresses)
+
+
+Here is the format I would like the summary to be in: 
+
+Business Contact Summary Template
+Name: [Supplied Name]
+Title: [Generated Job Title]
+Company: [Supplied Company]
+Location: [Generated City, State]
+Professional Overview
+[Name] is a seasoned [job title or function], currently serving as [title] at [company].
+Focuses on [brief focus or responsibility], driving key initiatives that align with company goals.
+Possesses over [X] years of experience in [industry/function], with a proven track record of success.
+Career Highlights
+Held pivotal roles at [previous companies], contributing to [specific projects, initiatives, or transformations].
+Led efforts in [key contributions or accomplishments], such as [examples: revenue growth, operational efficiency, market expansion].
+Recognized for expertise in [specific skills or domains], including [examples: strategic planning, team leadership, digital transformation].
+Skills &amp; Expertise
+[Skill or domain 1] - [Brief explanation or example of application].
+[Skill or domain 2] - [Brief explanation or example of application].
+[Skill or domain 3] - [Brief explanation or example of application].
+Additional competencies include [list any relevant certifications, technical skills, or languages].
+Education &amp; Credentials
+Holds a [degree] in [field] from [university].
+Additional certifications or professional training include [certifications, courses, or relevant qualifications].
+Location &amp; Professional Traits
+Based in [location], with experience navigating [regional market characteristics or industry environment].
+Known for [optional professional trait or achievement], such as:
+A collaborative leadership style that fosters team engagement.
+A data-driven approach to decision-making.
+A track record of scaling operations during periods of high growth.
+Strong communication and stakeholder management skills.
+Additional Notes (Optional)
+Active member of [industry associations or professional groups].
+Contributor to [publications, conferences, or thought leadership platforms].
+Involved in [community initiatives, mentorship, or volunteer work].
+
+Here is what we know about this person so far: 
+
+{!$RecordSnapshot:Contact.Snapshot}
+
+
+If the contact above is named John Finn please use the following information below to create your summary: 
+
+John F. Finn: Comprehensive Professional Profile
+Current Title:
+Chairman, Gardner, Inc.
+Professional Summary
+John F. Finn is a highly respected executive with over five decades of leadership experience in supply chain management, asset management, and corporate governance. He is best known for his long-standing role as Chairman of Gardner, Inc., one of the largest family-owned parts distributors and value-added service providers for the outdoor power equipment industry in the United States. Finn has also held significant board and trustee positions at major corporations, mutual funds, and nonprofit organizations, earning a reputation for strategic insight and governance expertise13467.
+Key Roles and Experience
+Chairman, Gardner, Inc. (1974–Present):
+Leads a major supply chain management company with a national footprint, overseeing strategic growth, operational excellence, and industry leadership. Gardner, Inc. operates multiple distribution centers, employs over 400 associates, and serves all 50 U.S. states34.
+Chairman of the Board, J.P. Morgan Asset Management (Unified J.P. Morgan Funds Board):
+Since January 2022, Finn has chaired the unified board overseeing 169 mutual funds and ETFs with nearly $1 trillion in assets. He first joined the board in 1998, serving in various leadership roles, including chair of the governance committee and member of audit and ETF committees1267.
+Lead Director, Cardinal Health (Retired):
+Served as lead director for 21 years at Cardinal Health, a Fortune 20 healthcare services company, where he provided governance, audit, and nominating committee leadership347.
+Director, Greif, Inc.:
+Board member at Greif, a global leader in industrial packaging, serving on audit and nominating committees. Recognized for his expertise in finance, operations, strategy, risk management, and mergers and acquisitions7.
+Trustee, J.P. Morgan Mutual Funds:
+Oversight of one of the largest mutual fund complexes in the U.S., focusing on governance, compliance, and fiduciary responsibilities1267.
+Director, Columbus Association for the Performing Arts (CAPA):
+Supports the arts and community initiatives in Columbus, Ohio347.
+Other Notable Board and Trustee Roles
+The Crane Group
+Fisher College of Business (The Ohio State University)
+The Columbus Academy
+Columbus School for Girls
+The Johns Company
+Saint Ann’s Hospital
+Mount Carmel Hospital
+St. Charles Preparatory
+I Know I Can (college access program for inner-city youth)34
+Professional Strengths and Reputation
+Corporate Governance:
+Extensive experience chairing and serving on governance, audit, and nominating committees for public and private companies, as well as nonprofit organizations7.
+Strategic Leadership:
+Recognized for guiding companies through complex operational, financial, and regulatory environments, with a focus on sustainable growth and profitability7.
+Industry Expertise:
+Deep knowledge in supply chain management, asset management, healthcare, industrial packaging, and education sectors347.
+Community Engagement:
+Strong supporter of educational and cultural institutions, with a history of board service to schools, colleges, and arts organizations347.
+Education
+BA, Economics – The Ohio State University
+MBA, Finance – Harvard Business School1345
+Recognition and Honors
+Nominee, Trustee of the Year (2023), Fund Directions Mutual Fund &amp; ETF Awards:
+Acknowledged for excellence and leadership in mutual fund governance2.
+Summary Table: Key Board and Leadership Roles
+
+
+
+Additional Context
+Finn’s leadership at Gardner, Inc. has helped the company become a trusted industry leader and brand steward, with a focus on channel management and value-added services34.
+His board experience spans public companies, private enterprises, and nonprofit organizations, reflecting a broad and deep understanding of corporate governance and community service7.
+Finn’s educational background from two prestigious institutions underpins his expertise in economics and finance1345.
+In summary:
+John F. Finn is a distinguished executive and board leader with a legacy of impact in supply chain management, asset management, healthcare, and community service. His governance, strategic vision, and commitment to both business excellence and civic engagement set him apart as a prominent figure in American business and philanthropy.
+
+You must return the information in proper HTML formatted way, so it renders visually on the UI. Never return the information in backticks or triple quotes.
+
+</content>
+        <inputs>
+            <apiName>objectToSummarize</apiName>
+            <definition>SOBJECT://Contact</definition>
+            <referenceName>Input:Contact</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:Contact.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:Contact</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_7</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__recordSummary</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

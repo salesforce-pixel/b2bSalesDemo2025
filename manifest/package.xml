@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>SalesAlertController</members>
+        <members>SalesRepEmailGenAI</members>
+        <members>GenerateAIPrepNotesController</members>
+        <members>AIReviewOnboardingController</members>
+        <members>AIResearchContactController</members>
+        <members>AIGeneratedMeetingNotes</members>
+        <members>AIGeneratedDraftProposal</members>
+        <members>OpportunityDataController</members>
+        <members>EmailManager</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>salesRepDashboard</members>
+        <members>emailComposer</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <types>
+        <members>Sales_Alerts__c</members>
+        <members>Onboarding__c</members>  
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>PA_AI_Generated_Proposal_Draft</members>
+        <members>Sales_Rep_Meeting_Summary</members>
+        <members>Contact_Intelligence_Demo_Summary_Generator</members>
+        <members>PA_Review_Onboarding_Status</members>
+        <members>PA_AI_Generated_Prep_Notes</members>
+        <members>PA_AI_Generated_Communication</members>
+        <name>GenAiPromptTemplate</name>
+    </types>
+    <version>64.0</version>
+</Package>

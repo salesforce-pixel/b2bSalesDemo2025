@@ -1,0 +1,404 @@
+<template>
+   <lightning-card title="Sales Rep Action Dashboard" icon-name="standard:dashboard">
+      <div class="dashboard-container">
+         <template for:each={columns} for:item="column">
+            <div key={column.label} class={column.cssClass}>
+               <h2>
+                  <!-- Icons for each column -->
+                  <template if:true={column.isDeals}>
+                     <lightning-icon icon-name="standard:opportunity" size="small"></lightning-icon>
+                  </template>
+                  <template if:true={column.isFollowups}>
+                     <lightning-icon icon-name="standard:task" size="small"></lightning-icon>
+                  </template>
+                  <template if:true={column.isGrow}>
+                     <lightning-icon icon-name="standard:customer" size="small"></lightning-icon>
+                  </template>
+                  <template if:true={column.isOnboarding}>
+                     <lightning-icon icon-name="standard:client" size="small"></lightning-icon>
+                  </template>
+                  {column.label}
+               </h2>
+               <!-- Empty state when no records -->
+               <template if:true={column.isEmpty}>
+                  <div class="empty-column">
+                     <lightning-icon icon-name="utility:info" size="small"></lightning-icon>
+                     <p>No items to display</p>
+                  </div>
+               </template>
+               <!-- Column content -->
+               <template for:each={column.records} for:item="item">
+                  <div key={item.id} class="card">
+                     <p>
+                        <a href={item.recordUrl} target="_blank">
+                        <strong>{item.displayTitle}</strong>
+                        </a>
+                     </p>
+                     <p>{item.triggerReason}</p>
+                     <div class="card-actions">
+                        <template if:true={item.action1}>
+                           <lightning-button 
+                              variant="brand" 
+                              label={item.action1} 
+                              data-id={item.id} 
+                              data-recordid={item.recordId} 
+                              onclick={handleButtonClick}>
+                           </lightning-button>
+                        </template>
+                        <template if:true={item.action2}>
+                           <lightning-button 
+                              variant="brand" 
+                              label={item.action2} 
+                              data-id={item.id} 
+                              data-recordid={item.recordId} 
+                              onclick={handleButtonClick}>
+                           </lightning-button>
+                        </template>
+                     </div>
+                  </div>
+               </template>
+            </div>
+         </template>
+      </div>
+      <!-- Email composer modal -->
+      <c-email-composer
+         show-modal={showEmailModal}
+         to={emailTo}
+         subject={emailSubject}
+         body={emailBody}
+         loading={isLoading}
+         onclose={handleEmailCloseModal}>
+      </c-email-composer>
+
+      <!-- New Opportunity Update Modal -->
+      <template if:true={showOpportunityModal}>
+         <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+               <header class="slds-modal__header">
+                  <h2 class="slds-modal__title">
+                     <lightning-icon icon-name="standard:opportunity" size="small" class="slds-m-right_small"></lightning-icon>
+                     Update Opportunity
+                  </h2>
+               </header>
+               <div class="slds-modal__content slds-p-around_medium scrollable-content" style="position: relative; min-height: 250px;">
+                  <template if:true={aiGeneratedProposalLoading}>
+                     <div class="loading-container">
+                        <lightning-spinner alternative-text="Drafting..." size="medium"></lightning-spinner>
+                        <p class="loading-text">Drafting proposal with AI...</p>
+                     </div>
+                  </template>
+                  <template if:false={aiGeneratedProposalLoading}>
+                     <lightning-input type="date" label="Close Date" value={oppCloseDate} onchange={handleOpptyCloseDateChange}></lightning-input>
+                     <lightning-combobox
+                        label="Stage"
+                        value={oppStageName}
+                        placeholder="Select Stage"
+                        options={stageOptions}
+                        onchange={handleOpptyStageChange}>
+                     </lightning-combobox>
+                     <div class="slds-grid slds-grid_align-spread slds-m-top_medium">
+                        <lightning-textarea
+                           class="slds-size_11-of-12"
+                           label="Proposal"
+                           value={opptyProposal}
+                           onchange={handleOpptyProposalChange}>
+                        </lightning-textarea>
+                        <lightning-button-icon icon-name="utility:einstein" alternative-text="Generate Proposal" tooltip="Generate Proposal"
+                           onclick={generateProposalAI} class="slds-m-left_small slds-m-top_large"> </lightning-button-icon>
+                     </div>
+                  </template>
+               </div>
+               <footer class="slds-modal__footer">
+                  <lightning-button variant="neutral" label="Close" onclick={handleCloseOpportunityModal}></lightning-button>
+                  <lightning-button variant="brand" label="Save" class="slds-m-left_x-small" onclick={saveOpportunityUpdates}></lightning-button>
+               </footer>
+            </div>
+         </section>
+         <div class="slds-backdrop slds-backdrop_open"></div>
+      </template>
+
+      <!-- Call Notes Modal -->
+      <template if:true={showCallNotesModal}>
+         <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+               <header class="slds-modal__header">
+                  <h2 class="slds-modal__title">
+                     <lightning-icon icon-name="standard:note" size="small" class="slds-m-right_small"></lightning-icon>
+                     Update Call Notes
+                  </h2>
+               </header>
+               <div class="slds-modal__content slds-p-around_medium" style="position: relative; min-height: 350px;">
+                  <!-- Toggle Mode -->
+                  <div class="slds-grid slds-grid_align-end slds-m-bottom_medium">
+                     <lightning-input 
+                        type="toggle"
+                        label="Switch to Voice Recording"
+                        checked={isVoiceMode}
+                        onchange={handleToggleChange}
+                        message-toggle-active="Record Your Voice"
+                        message-toggle-inactive="Upload Call Notes">
+                     </lightning-input>
+                  </div>
+                  <!-- Spinner overlay while analyzing -->
+                  <template if:true={analyzingNotes}>
+                     <div class="loading-container">
+                        <lightning-spinner alternative-text="Analyzing..." size="medium"></lightning-spinner>
+                        <p class="loading-text">Analyzing your call notes with AI...</p>
+                     </div>
+                  </template>
+                  <!-- Conditional UI: Upload OR Voice -->
+                  <template if:false={isVoiceMode}>
+                     <!-- Upload Flow -->
+                     <template if:false={callNoteAnalysisResultReady}>
+                        <div class="slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-wrap">
+                           <div class="slds-size_1-of-1 slds-m-bottom_medium">
+                              <div class="file-upload-container">
+                                 <lightning-icon icon-name="utility:upload" size="medium" class="slds-m-bottom_small"></lightning-icon>
+                                 <lightning-file-upload
+                                    label="Upload Hand Written Notes"
+                                    name="uploadFile"
+                                    multiple="false"
+                                    accept=".jpg,.jpeg,.png,.pdf"
+                                    record-id={uploadRecordId}
+                                    onuploadfinished={callNotesUploadHandler}>
+                                 </lightning-file-upload>
+                              </div>
+                           </div>
+                           <template if:true={uploadedFileName}>
+                              <div class="uploaded-file slds-size_1-of-1">
+                                 <lightning-icon icon-name="doctype:pdf" size="small"></lightning-icon>
+                                 <strong>{uploadedFileName}</strong> has been uploaded
+                              </div>
+                           </template>
+                           <div class="slds-size_1-of-1 slds-text-align_center">
+                              <lightning-button
+                                 variant="brand"
+                                 label="Analyze Notes"
+                                 icon-name="utility:einstein"
+                                 class="slds-m-top_medium"
+                                 disabled={disableAnalyzeButton}
+                                 onclick={handleAnalyzeCallNotes}>
+                              </lightning-button>
+                           </div>
+                        </div>
+                     </template>
+                  </template>
+                  <template if:true={isVoiceMode}>
+                     <!-- Voice Flow -->
+                     <div class="voice-crm-container slds-m-bottom_medium">
+                        <div class="insight-box">
+                           <div class="insight-header">
+                              <lightning-icon icon-name="utility:voice" size="small"></lightning-icon>
+                              <h3>Voice CRM</h3>
+                           </div>
+                           <div class="slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-m-top_small">
+                              <template if:false={showVoiceFlow}>
+                              <lightning-button 
+                                 variant="brand" 
+                                 label="Record Your Voice" 
+                                 icon-name="utility:record" 
+                                 onclick={handleVoiceRecord}
+                                 class="slds-m-around_medium">
+                              </lightning-button>
+                              </template>
+                           </div>
+                           <template if:true={showVoiceFlow}>
+                              <div class="slds-box slds-theme_default slds-m-top_medium">
+                                 <lightning-flow
+                                    flow-api-name="sfAi_voice__Voice_Note_Capture"
+                                    flow-input-variables={voiceFlowInputVariables}
+                                    onstatuschange={handleFlowStatusChange}>
+                                 </lightning-flow>
+                              </div>
+                           </template>
+                        </div>
+                     </div>
+                  </template>
+                  <!-- Analysis Output -->
+                  <template if:true={callNoteAnalysisResultReady}>
+                     <div class="scrollable-content">
+                        <div class="insight-box">
+                           <div class="insight-header">
+                              <lightning-icon icon-name="utility:summary" size="small"></lightning-icon>
+                              <h3>Call Summary</h3>
+                           </div>
+                           <lightning-formatted-rich-text value={callNoteAnalysisResult.summary}></lightning-formatted-rich-text>
+                        </div>
+                        <template if:true={callNoteAnalysisResult.key_insights}>
+                           <div class="insight-box">
+                              <div class="insight-header">
+                                 <lightning-icon icon-name="utility:lightbulb" size="small"></lightning-icon>
+                                 <h3>Key Insights</h3>
+                              </div>
+                              <ul class="slds-list_dotted">
+                                 <template for:each={callNoteAnalysisResult.key_insights} for:item="item">
+                                    <li key={item}>{item}</li>
+                                 </template>
+                              </ul>
+                           </div>
+                        </template>
+                        <template if:true={callNoteAnalysisResult.customer_pain_points}>
+                           <div class="insight-box">
+                              <div class="insight-header">
+                                 <lightning-icon icon-name="utility:warning" size="small"></lightning-icon>
+                                 <h3>Customer Pain Points</h3>
+                              </div>
+                              <ul class="slds-list_dotted">
+                                 <template for:each={callNoteAnalysisResult.customer_pain_points} for:item="item">
+                                    <li key={item}>{item}</li>
+                                 </template>
+                              </ul>
+                           </div>
+                        </template>
+                        <template if:true={callNoteAnalysisResult.follow_up_actions}>
+                           <div class="insight-box">
+                              <div class="insight-header">
+                                 <lightning-icon icon-name="utility:checkin" size="small"></lightning-icon>
+                                 <h3>Follow-Up Actions</h3>
+                              </div>
+                              <ul class="slds-list_dotted">
+                                 <template for:each={callNoteAnalysisResult.follow_up_actions} for:item="item">
+                                    <li key={item}>{item}</li>
+                                 </template>
+                              </ul>
+                              <div class="slds-m-top_small">
+                                 <template for:each={callNoteAnalysisResult.follow_up_actions} for:item="action">
+                                    <lightning-button key={action} label={action} variant="brand-outline" class="action-button"></lightning-button>
+                                 </template>
+                              </div>
+                           </div>
+                        </template>
+                        <template if:true={callNoteAnalysisResult.decision_makers}>
+                           <div class="insight-box">
+                              <div class="insight-header">
+                                 <lightning-icon icon-name="utility:people" size="small"></lightning-icon>
+                                 <h3>Decision Makers</h3>
+                              </div>
+                              <ul class="slds-list_dotted">
+                                 <template for:each={callNoteAnalysisResult.decision_makers} for:item="item">
+                                    <li key={item}>{item}</li>
+                                 </template>
+                              </ul>
+                           </div>
+                        </template>
+                        <template if:true={callNoteAnalysisResult.timeline_references}>
+                           <div class="insight-box">
+                              <div class="insight-header">
+                                 <lightning-icon icon-name="utility:date_time" size="small"></lightning-icon>
+                                 <h3>Timeline References</h3>
+                              </div>
+                              <ul class="slds-list_dotted">
+                                 <template for:each={callNoteAnalysisResult.timeline_references} for:item="item">
+                                    <li key={item}>{item}</li>
+                                 </template>
+                              </ul>
+                           </div>
+                        </template>
+                     </div>
+                  </template>
+               </div>
+               <footer class="slds-modal__footer">
+                  <lightning-button variant="neutral" label="Close" onclick={handleCloseCallNotesModal}></lightning-button>
+                  <template if:true={callNoteAnalysisResultReady}>
+                     <lightning-button variant="brand" label="Save to Record" onclick={saveToRecordHandler} class="slds-m-left_x-small"></lightning-button>
+                  </template>
+               </footer>
+            </div>
+         </section>
+         <div class="slds-backdrop slds-backdrop_open"></div>
+      </template>
+      <!-- Prep Notes Modal -->
+      <template if:true={showPrepNotesModal}>
+         <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+               <header class="slds-modal__header">
+                  <h2 class="slds-modal__title">
+                     <lightning-icon icon-name="standard:quotes" size="small" class="slds-m-right_small"></lightning-icon>
+                     AI-Generated Prep Notes
+                  </h2>
+               </header>
+               <div class="slds-modal__content slds-p-around_medium scrollable-content" style="position: relative; min-height: 250px;">
+                  <template if:true={prepLoading}>
+                     <div class="loading-container">
+                        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                        <p class="loading-text">Generating meeting prep notes with AI...</p>
+                     </div>
+                  </template>
+                  <template if:false={prepLoading}>
+                     <lightning-formatted-rich-text value={prepNotes}></lightning-formatted-rich-text>
+                  </template>
+               </div>
+               <footer class="slds-modal__footer">
+                  <lightning-button variant="neutral" label="Close" onclick={handleClosePrepNotesModal}></lightning-button>
+                  <template if:false={prepLoading}>
+                     <lightning-button variant="brand" label="Add to Meeting Notes" class="slds-m-left_x-small" onclick={addToMeetingNotes}></lightning-button>
+                  </template>
+               </footer>
+            </div>
+         </section>
+         <div class="slds-backdrop slds-backdrop_open"></div>
+      </template>
+      <!-- Review Status Modal -->
+      <template if:true={showReviewStatusModal}>
+         <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+               <header class="slds-modal__header">
+                  <h2 class="slds-modal__title">
+                     <lightning-icon icon-name="standard:dashboard" size="small" class="slds-m-right_small"></lightning-icon>
+                     AI-Generated Review Status
+                  </h2>
+               </header>
+               <div class="slds-modal__content slds-p-around_medium scrollable-content" style="position: relative; min-height: 250px;">
+                  <template if:true={reviewLoading}>
+                     <div class="loading-container">
+                        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                        <p class="loading-text">Generating review status with AI...</p>
+                     </div>
+                  </template>
+                  <template if:false={reviewLoading}>
+                     <lightning-formatted-rich-text value={reviewNotes}></lightning-formatted-rich-text>
+                  </template>
+               </div>
+               <footer class="slds-modal__footer">
+                  <lightning-button variant="neutral" label="Close" onclick={handleCloseReviewStatusModal}></lightning-button>
+                  <template if:false={reviewLoading}>
+                     <lightning-button variant="brand" label="Share with Team" onclick={shareWithTeam} class="slds-m-left_x-small"></lightning-button>
+                  </template>
+               </footer>
+            </div>
+         </section>
+         <div class="slds-backdrop slds-backdrop_open"></div>
+      </template>
+      <!-- Contact Research Modal -->
+      <template if:true={showContactResearchModal}>
+         <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+               <header class="slds-modal__header">
+                  <h2 class="slds-modal__title">
+                     <lightning-icon icon-name="standard:contact" size="small" class="slds-m-right_small"></lightning-icon>
+                     AI-Generated Contact Research
+                  </h2>
+               </header>
+               <div class="slds-modal__content slds-p-around_medium scrollable-content" style="position: relative; min-height: 250px;">
+                  <template if:true={contactLoading}>
+                     <div class="loading-container">
+                        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                        <p class="loading-text">Researching contact details with AI...</p>
+                     </div>
+                  </template>
+                  <template if:false={contactLoading}>
+                     <lightning-formatted-rich-text value={contactResearch}></lightning-formatted-rich-text>
+                  </template>
+               </div>
+               <footer class="slds-modal__footer">
+                  <lightning-button variant="neutral" label="Close" onclick={handleCloseContactResearchModal}></lightning-button>
+                  <template if:false={contactLoading}>
+                     <lightning-button variant="brand" label="Add to Contact Notes" onclick={addToContactNotes} class="slds-m-left_x-small"></lightning-button>
+                  </template>
+               </footer>
+            </div>
+         </section>
+         <div class="slds-backdrop slds-backdrop_open"></div>
+      </template>
+   </lightning-card>
+</template>
