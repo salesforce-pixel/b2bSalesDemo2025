@@ -19,7 +19,8 @@
     </types>
     <types>
         <members>Sales_Alerts__c</members>
-        <members>Onboarding__c</members>  
+        <members>Onboarding__c</members>
+        <members>Interaction__c</members>  
         <name>CustomObject</name>
     </types>
     <types>
@@ -36,6 +37,30 @@
         <members>PA_AI_Generated_Prep_Notes</members>
         <members>PA_AI_Generated_Communication</members>
         <name>GenAiPromptTemplate</name>
+    </types>
+    <types>
+        <members>Opportunity.Product__c</members>
+        <members>Opportunity.Proposal__c</members>
+        <members>Opportunity.Close_Plan__c</members>
+        <members>Contact.Primary_Contact__c</members>
+        <members>Account.Annual_Revenue_Bucket__c</members>
+        <members>Account.Classification__c</members>
+        <members>Account.Customer_Tenure__c</members>
+        <members>Account.Employee_Size_Bucket__c</members>
+        <members>Account.Customer_Since__c</members>
+        <members>Account.Customer_Tier__c</members>
+        <members>Account.Premium_Customer__c</members>
+        <members>Account.Products__c</members>
+        <members>Account.Region__c</members>
+        <members>Account.Number_of_Products__c</members>
+        <members>Account.Days_Since_Last_Interaction__c</members>
+        <members>Account.Customer_Revenue__c</members>
+        <members>Account.Last_Interaction_Date__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>Onboarding_Record_Page1</members>
+        <name>FlexiPage</name>
     </types>
     <version>64.0</version>
 </Package>
