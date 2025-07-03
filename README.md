@@ -1,5 +1,6 @@
 # Salesforce DX Project
 Author: Rajeev Shekhar, rshekhar@salesforce.com
+
 A Salesforce DX project to deploy the Smart AI based Sales Rep Dashboard Home.
 
 ## Prerequisites
