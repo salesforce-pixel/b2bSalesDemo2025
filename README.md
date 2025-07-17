@@ -1,83 +1,109 @@
 # Smart AI Dashboard for B2B Sales
-Author: Rajeev Shekhar, rshekhar@salesforce.com
 
-This is a Salesforce DX project to deploy the Smart AI based Sales Rep Dashboard Home.
+**Author:** Rajeev Shekhar - rshekhar@salesforce.com
+
+An intelligent Salesforce DX project that deploys an AI-powered Sales Rep Dashboard Home, designed to enhance B2B sales performance through smart insights and automation.
 
 ## Prerequisites
 
-Before you begin, ensure you have the following installed:
+Ensure you have the following tools installed before starting:
 
-- [Salesforce CLI](https://developer.salesforce.com/tools/sfdxcli) (sf CLI)
-- [Node.js](https://nodejs.org/) (version 18 or higher)
-- [Git](https://git-scm.com/)
+- **[Salesforce CLI](https://developer.salesforce.com/tools/sfdxcli)** (sf CLI) - Latest version
+- **[Node.js](https://nodejs.org/)** - Version 18 or higher
+- **[Git](https://git-scm.com/)** - For version control
 
-## Quick Start
+## Quick Start Guide
 
-### 1. Clone the Repository
+### Step 1: Clone the Repository
 
 ```bash
 git clone https://github.com/salesforce-pixel/b2bSalesDemo2025.git
 cd <repository-name>
 ```
 
-### 2. Authenticate with Your Salesforce Org
+### Step 2: Authenticate with Your Salesforce Org
 
 ```bash
 sf org login web -a targetOrg
 ```
 
-Replace `targetOrg` with your preferred alias for the target organization.
+> **Note:** Replace `targetOrg` with your preferred alias for the target organization.
 
-### 3. Deploy the codebase to the target Salesforce Org
+### Step 3: Deploy to Salesforce
 
 ```bash
 sf project deploy start -x manifest/package.xml -o targetOrg -l NoTestRun
 ```
 
-That's it! Your metadata will be deployed to the target org.
+The metadata will be deployed to your target org automatically.
 
-### 4. Assign Permission Set
+### Step 4: Configure Permissions
 
-1. Once the depployment is complete, assign "Sales Alert Object Access" Permission Set to your User record.
-2. Make sure Generative AI, Einstein for Sales and Prompt Builder is already enabled in the target org.
+After successful deployment:
 
-### 4. Upload the sample Sales Alert data to run the dashboard
+1. **Assign Permission Set:** Navigate to your User record and assign the "Sales Alert Object Access" Permission Set
+2. **Enable Prerequisites:** Ensure the following features are enabled in your target org:
+   - Generative AI
+   - Einstein for Sales
+   - Prompt Builder
 
-Run the following script and a dataset will be automatically be created in your org
+### Step 5: Load Sample Data
+
+Import the sample Sales Alert data to activate the dashboard:
+
 ```bash
 sf data import tree --files Sales_Alerts__c.json --target-org yourTargetOrg 
 ```
-Once this dataset is uploaded in the target org, you need to open the Sales Alert Object --> Go to List View All --> Assing these Sales Alert records to real Account, Opportunities, Contact and Onboarding records via the Record_Id__c field.
-Record_Id__c on Sales Alert is just a text field, and it needs the record Id of the respective Parent record.
 
+**Important Configuration Steps:**
 
+1. After data import, navigate to **Sales Alert Object → List View All**
+2. Associate Sales Alert records with existing records in your org by updating the `Record_Id__c` field with actual record IDs for:
+   - Accounts
+   - Opportunities
+   - Contacts
+   - Onboarding records
 
+> **Performance Note:** The dashboard effectiveness depends on your org's existing data quality. Review the Prompt Template configurations to understand the design patterns, then optimize your data accordingly for desired dashboard outputs.
 
+## Command Reference
 
-## Available Commands
-
-### Deploy Commands
+### Deployment Commands
 
 ```bash
-# Deploy with manifest (recommended)
+# Standard deployment (recommended)
 sf project deploy start -x manifest/package.xml -o targetOrg -l NoTestRun
 
-# Deploy with validation only
+# Validation-only deployment
 sf project deploy start -x manifest/package.xml --dry-run -o targetOrg
 
-# Deploy and run tests
+# Deploy with test execution
 sf project deploy start -x manifest/package.xml -o targetOrg -l RunLocalTests
 ```
 
-### Org Management
+### Org Management Commands
 
 ```bash
-# List authenticated orgs
+# View authenticated orgs
 sf org list
 
 # Open org in browser
 sf org open -o targetOrg
 
-# Check org limits
+# Check org limits and usage
 sf org list limits -o targetOrg
 ```
+
+## Troubleshooting
+
+**Common Issues:**
+
+- **Permission Errors:** Ensure the Permission Set is properly assigned after deployment
+- **Data Issues:** Verify that `Record_Id__c` fields contain valid Salesforce record IDs
+- **AI Features:** Confirm that Einstein for Sales and Prompt Builder are enabled in your org
+
+**Support:** For technical issues or questions, contact the author at rshekhar@salesforce.com
+
+## Next Steps
+
+Once deployed and configured, explore the dashboard features and customize the Prompt Templates to match your specific sales processes and data structure for optimal AI-driven insights.
