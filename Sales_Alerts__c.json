@@ -1,0 +1,109 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Sales_Alerts__c",
+                "referenceId": "Sales_Alerts__cRef1"
+            },
+            "AI_Identified_Action_1__c": "Review Status",
+            "AI_Identified_Action_2__c": "Initiate Kick Off",
+            "Category__c": "Onboarding",
+            "Object__c": "Onboarding__c",
+            "Trigger_Reason__c": "Setup overdue and client unresponsive to multiple outreach attempts. Risk of delay."
+        },
+        {
+            "attributes": {
+                "type": "Sales_Alerts__c",
+                "referenceId": "Sales_Alerts__cRef2"
+            },
+            "AI_Identified_Action_1__c": "Schedule Check-In",
+            "Category__c": "Onboarding",
+            "Object__c": "Onboarding__c",
+            "Trigger_Reason__c": "Kickoff meeting not scheduled. No client activity post-close. High risk of disengagement."
+        },
+        {
+            "attributes": {
+                "type": "Sales_Alerts__c",
+                "referenceId": "Sales_Alerts__cRef3"
+            },
+            "AI_Identified_Action_1__c": "Research Contact",
+            "AI_Identified_Action_2__c": "Send Email",
+            "Category__c": "Grow and Protect",
+            "Object__c": "Contact",
+            "Trigger_Reason__c": "New contact no engagement yet"
+        },
+        {
+            "attributes": {
+                "type": "Sales_Alerts__c",
+                "referenceId": "Sales_Alerts__cRef4"
+            },
+            "AI_Identified_Action_1__c": "Schedule Meeting",
+            "Category__c": "Deals Needing Attention",
+            "Object__c": "Opportunity",
+            "Trigger_Reason__c": "Last touch point greater than 30 days"
+        },
+        {
+            "attributes": {
+                "type": "Sales_Alerts__c",
+                "referenceId": "Sales_Alerts__cRef5"
+            },
+            "AI_Identified_Action_1__c": "Update Call Notes",
+            "Category__c": "Follow Ups",
+            "Object__c": "Account",
+            "Trigger_Reason__c": "Post call follow ups"
+        },
+        {
+            "attributes": {
+                "type": "Sales_Alerts__c",
+                "referenceId": "Sales_Alerts__cRef6"
+            },
+            "AI_Identified_Action_1__c": "Update Opportunity",
+            "AI_Identified_Action_2__c": "Schedule Check-In",
+            "Category__c": "Deals Needing Attention",
+            "Object__c": "Opportunity",
+            "Trigger_Reason__c": "Deal in Proposal Stage missing proposal"
+        },
+        {
+            "attributes": {
+                "type": "Sales_Alerts__c",
+                "referenceId": "Sales_Alerts__cRef7"
+            },
+            "AI_Identified_Action_1__c": "Review Prep Notes",
+            "AI_Identified_Action_2__c": "Update Call Notes",
+            "Category__c": "Follow Ups",
+            "Object__c": "Account",
+            "Trigger_Reason__c": "Prep for meeting regarding expansion opportunities"
+        },
+        {
+            "attributes": {
+                "type": "Sales_Alerts__c",
+                "referenceId": "Sales_Alerts__cRef8"
+            },
+            "AI_Identified_Action_1__c": "Send Email",
+            "Category__c": "Grow and Protect",
+            "Object__c": "Account",
+            "Trigger_Reason__c": "High-Value Prospect not yet engaged"
+        },
+        {
+            "attributes": {
+                "type": "Sales_Alerts__c",
+                "referenceId": "Sales_Alerts__cRef9"
+            },
+            "AI_Identified_Action_1__c": "Schedule Check-In",
+            "Category__c": "Deals Needing Attention",
+            "Object__c": "Opportunity",
+            "Trigger_Reason__c": "In forecast but deal at risk"
+        },
+        {
+            "attributes": {
+                "type": "Sales_Alerts__c",
+                "referenceId": "Sales_Alerts__cRef10"
+            },
+            "AI_Identified_Action_1__c": "Review Adoption",
+            "AI_Identified_Action_2__c": "Initiate Nurture",
+            "Category__c": "Grow and Protect",
+            "Object__c": "Account",
+            "Trigger_Reason__c": "Account at risk"
+        }
+    ]
+}

@@ -28,7 +28,7 @@ sf org login web -a targetOrg
 
 Replace `targetOrg` with your preferred alias for the target organization.
 
-### 3. Deploy to Salesforce
+### 3. Deploy the codebase to the target Salesforce Org
 
 ```bash
 sf project deploy start -x manifest/package.xml -o targetOrg -l NoTestRun
@@ -36,24 +36,22 @@ sf project deploy start -x manifest/package.xml -o targetOrg -l NoTestRun
 
 That's it! Your metadata will be deployed to the target org.
 
-## Project Structure
+### 4. Assign Permission Set
 
+Assign "Sales Alert Object Access" Permission Set to your User record.
+
+### 4. Upload the sample Sales Alert data to run the dashboard
+
+Run the following script and a dataset will be automatically be created in your org
+```bash
+sf data import tree --files Sales_Alerts__c.json --target-org yourTargetOrg 
 ```
-├── .forceignore          # Files to ignore during deployment
-├── .gitignore            # Git ignore file
-├── .husky/               # Git hooks configuration
-├── .prettierignore       # Prettier ignore file
-├── .prettierrc           # Prettier configuration
-├── .vscode/              # VS Code workspace settings
-├── config/               # Project configuration files
-├── force-app/main/default/  # Main source directory
-├── jest.config.js        # Jest testing configuration
-├── manifest/             # Package manifests
-│   └── package.xml       # Deployment package manifest
-├── package.json          # Node.js dependencies
-├── scripts/              # Utility scripts
-└── sfdx-project.json     # SFDX project configuration
-```
+Once this dataset is uploaded, you need to open the Sales Alert Object --> Go to List View All --> Assing these Sales Alerts to real Account, Opportunities, Contact and Onboarding records via the Record_Id__c field.
+Record_Id__c on Sales Alert is just a text field, and it needs the record Id of the respective Parent record.
+
+
+
+
 
 ## Available Commands
 

@@ -70,15 +70,27 @@ public without sharing class SalesAlertController {
             wrap.objectName = alert.Object__c;
             wrap.recordId = alert.Record_Id__c;
 
+            // Fixed null-safe handling for display titles
             if (alert.Object__c == 'Opportunity' && oppMap.containsKey(alert.Record_Id__c)) {
                 Opportunity o = oppMap.get(alert.Record_Id__c);
-                wrap.displayTitle = o.Name + ' ($' + String.valueOf((Integer)o.Amount) + 'K)';
+                if (o != null) {
+                    String amountStr = '';
+                    if (o.Amount != null) {
+                        amountStr = ' ($' + String.valueOf((Integer)o.Amount) + 'K)';
+                    }
+                    wrap.displayTitle = (o.Name != null ? o.Name : 'Opportunity') + amountStr;
+                } else {
+                    wrap.displayTitle = 'Opportunity';
+                }
             } else if (alert.Object__c == 'Account' && accMap.containsKey(alert.Record_Id__c)) {
-                wrap.displayTitle = accMap.get(alert.Record_Id__c).Name;
+                Account acc = accMap.get(alert.Record_Id__c);
+                wrap.displayTitle = (acc != null && acc.Name != null) ? acc.Name : 'Account';
             } else if (alert.Object__c == 'Contact' && conMap.containsKey(alert.Record_Id__c)) {
-                wrap.displayTitle = conMap.get(alert.Record_Id__c).Name;
+                Contact con = conMap.get(alert.Record_Id__c);
+                wrap.displayTitle = (con != null && con.Name != null) ? con.Name : 'Contact';
             } else if (alert.Object__c == 'Onboarding__c' && onboardMap.containsKey(alert.Record_Id__c)) {
-                wrap.displayTitle = onboardMap.get(alert.Record_Id__c).Name;
+                Onboarding__c onboard = onboardMap.get(alert.Record_Id__c);
+                wrap.displayTitle = (onboard != null && onboard.Name != null) ? onboard.Name : 'Onboarding';
             } else {
                 wrap.displayTitle = 'Record';
             }

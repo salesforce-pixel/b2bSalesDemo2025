@@ -62,5 +62,14 @@
         <members>Onboarding_Record_Page1</members>
         <name>FlexiPage</name>
     </types>
+    <types>
+        <members>Sales_Alerts__c</members>
+        <members>Onboarding__c</members>
+        <name>CustomTab</name>
+    </types>
+        <types>
+        <members>Sales_Alert_Object_Access</members>
+        <name>PermissionSet</name>
+    </types>
     <version>64.0</version>
 </Package>
