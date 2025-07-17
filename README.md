@@ -1,7 +1,7 @@
-# Salesforce DX Project
+# Smart AI Dashboard for B2B Sales
 Author: Rajeev Shekhar, rshekhar@salesforce.com
 
-A Salesforce DX project to deploy the Smart AI based Sales Rep Dashboard Home.
+This is a Salesforce DX project to deploy the Smart AI based Sales Rep Dashboard Home.
 
 ## Prerequisites
 
@@ -38,7 +38,8 @@ That's it! Your metadata will be deployed to the target org.
 
 ### 4. Assign Permission Set
 
-Assign "Sales Alert Object Access" Permission Set to your User record.
+1. Once the depployment is complete, assign "Sales Alert Object Access" Permission Set to your User record.
+2. Make sure Generative AI, Einstein for Sales and Prompt Builder is already enabled in the target org.
 
 ### 4. Upload the sample Sales Alert data to run the dashboard
 
@@ -46,7 +47,7 @@ Run the following script and a dataset will be automatically be created in your 
 ```bash
 sf data import tree --files Sales_Alerts__c.json --target-org yourTargetOrg 
 ```
-Once this dataset is uploaded, you need to open the Sales Alert Object --> Go to List View All --> Assing these Sales Alerts to real Account, Opportunities, Contact and Onboarding records via the Record_Id__c field.
+Once this dataset is uploaded in the target org, you need to open the Sales Alert Object --> Go to List View All --> Assing these Sales Alert records to real Account, Opportunities, Contact and Onboarding records via the Record_Id__c field.
 Record_Id__c on Sales Alert is just a text field, and it needs the record Id of the respective Parent record.
 
 
