@@ -55,6 +55,10 @@ Import the sample Sales Alert data to activate the dashboard:
 sf data import tree --files Sales_Alerts__c.json --target-org yourTargetOrg 
 ```
 
+### Step 6: Install the Voice CRM Managed Package
+The VoiceCRM managed package allows you to record a voice note from your computer or mobile device directly in Salesforce related to a record (such an Opportunity). After you record the note, an Agentforce agent will interpret the transcript for any record updates or creation and stage those for you. You can install this package by running a workflow in the Slack channel - #frontier-voice-crm-pilot-package-support
+
+
 **Important Configuration Steps:**
 
 1. After data import, navigate to **Sales Alert Object → List View All**
