@@ -65,6 +65,7 @@
     <types>
         <members>Sales_Alerts__c</members>
         <members>Onboarding__c</members>
+        <members>Interaction__c</members>
         <name>CustomTab</name>
     </types>
         <types>
