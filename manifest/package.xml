@@ -26,7 +26,8 @@
     <types>
         <members>PA_AI_Generated_Communication_Grounding</members>
         <members>PA_winning_proposals_for_grounding</members> 
-        <members>PA_Account_Prep_Notes_Grounding</members>  
+        <members>PA_Account_Prep_Notes_Grounding</members> 
+        <members>Generate_Actions</members>  
         <name>Flow</name>
     </types>
     <types>
@@ -36,6 +37,7 @@
         <members>PA_Review_Onboarding_Status</members>
         <members>PA_AI_Generated_Prep_Notes</members>
         <members>PA_AI_Generated_Communication</members>
+        <members>Generate_AI_Actions</members>
         <name>GenAiPromptTemplate</name>
     </types>
     <types>

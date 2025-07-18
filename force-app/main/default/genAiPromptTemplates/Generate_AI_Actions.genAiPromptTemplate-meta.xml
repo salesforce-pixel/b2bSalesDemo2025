@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_5</activeVersionIdentifier>
+    <developerName>Generate_AI_Actions</developerName>
+    <masterLabel>Generate AI Actions</masterLabel>
+    <templateVersions>
+        <content>You are provided with a sales alert. 
+
+The alert includes: 
+
+- Category: {!$Input:Alerts.Category__c} 
+- Object Type: {!$Input:Alerts.Object__c} 
+- Trigger Reason: {!$Input:Alerts.Trigger_Reason__c} 
+
+Suggest up to two actions a sales rep should take from this list. Only use this list of actions
+
+- Review and Update Opportunity - Review key opportunity fields and update as needed 
+- Send Email - Contact client for follow-up or clarification 
+- Schedule Meeting - Set up discussion with client about next steps 
+- Update Call Notes - Document conversation details after client call 
+- Create Task - Set follow-up reminder for required action 
+- Log Activity - Record interaction details for tracking purposes 
+- Schedule Check-In - Arrange brief status meeting with client 
+- Review Prep Notes - Examine preparation materials before engagement 
+- Research Contact - Gather background information on key contact 
+
+Use EXACTLY these actions for each trigger reason:
+
+- &quot;In forecast but deal at risk&quot; → Review Record 
+- &quot;Account at risk&quot; → Review Record 
+- &quot;High-Value Prospect not yet engaged&quot; → Send Email 
+- &quot;Prep for meeting regarding expansion opportunities&quot; → Review Prep Notes 
+- &quot;Deal in Proposal Stage missing proposal&quot; → Review and Update Opportunity, Send Email 
+- &quot;Last touch point greater than 30 days&quot; → Schedule Meeting 
+- &quot;Post call follow ups&quot; → Update Call Notes 
+- &quot;New contact no engagement yet&quot; → Research Contact, Send Email 
+- &quot;Setup overdue and client unresponsive to multiple outreach attempts. Risk of delay.&quot; → Send Email 
+- &quot;Kickoff meeting not scheduled. No client activity post-close. High risk of disengagement.&quot; → Schedule Meeting 
+
+If the trigger reason doesn&apos;t match any of the above exactly, suggest &quot;Review Record&quot;. 
+DO NOT display any text other than the action(s). No labels, no explanations, no categories - ONLY the action(s) separated by commas.
+</content>
+        <inputs>
+            <apiName>Alerts</apiName>
+            <definition>SOBJECT://Sales_Alerts__c</definition>
+            <masterLabel>Alerts</masterLabel>
+            <referenceName>Input:Alerts</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are provided with a sales alert. 
+
+The alert includes: 
+
+- Category: {!$Input:Alerts.Category__c} 
+- Object Type: {!$Input:Alerts.Object__c} 
+- Trigger Reason: {!$Input:Alerts.Trigger_Reason__c} 
+
+Suggest up to two actions a sales rep should take from this list. Only use this list of actions
+
+- Review and Update Opportunity - Review key opportunity fields and update as needed 
+- Send Email - Contact client for follow-up or clarification 
+- Schedule Meeting - Set up discussion with client about next steps 
+- Update Call Notes - Document conversation details after client call 
+- Initiate Kick Off - Initiate onboarding process 
+- Log Activity - Record interaction details for tracking purposes 
+- Schedule Check-In - Arrange brief status meeting with client 
+- Review Prep Notes - Examine preparation materials before engagement 
+- Research Contact - Gather background information on key contact 
+- Review Adoption - Review client product usage
+- Initiate Red Account Nurture Process - Add to nurture campaign for high risk accounts
+
+Use EXACTLY these actions for each trigger reason:
+
+- &quot;In forecast but deal at risk&quot; → Review Record, Schedule Check-In 
+- &quot;Account at risk&quot; → Review Adoption, Initiate Red Account Nurture Process 
+- &quot;High-Value Prospect not yet engaged&quot; → Send Email 
+- &quot;Prep for meeting regarding expansion opportunities&quot; → Review Prep Notes 
+- &quot;Deal in Proposal Stage missing proposal&quot; → Review and Update Opportunity, Schedule Check-In 
+- &quot;Last touch point greater than 30 days&quot; → Schedule Meeting 
+- &quot;Post call follow ups&quot; → Update Call Notes
+- &quot;New contact no engagement yet&quot; → Research Contact, Send Email 
+- &quot;Setup overdue and client unresponsive to multiple outreach attempts. Risk of delay.&quot; → Review Status, Initiate Kick Off 
+- &quot;Kickoff meeting not scheduled. No client activity post-close. High risk of disengagement.&quot; → Schedule Check-In 
+
+If the trigger reason doesn&apos;t match any of the above exactly, suggest &quot;Review Record&quot;. 
+DO NOT display any text other than the action(s). No labels, no explanations, no categories - ONLY the action(s) separated by commas.
+</content>
+        <inputs>
+            <apiName>Alerts</apiName>
+            <definition>SOBJECT://Sales_Alerts__c</definition>
+            <masterLabel>Alerts</masterLabel>
+            <referenceName>Input:Alerts</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_2</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are provided with a sales alert. 
+
+The alert includes: 
+
+- Category: {!$Input:Alerts.Category__c} 
+- Object Type: {!$Input:Alerts.Object__c} 
+- Trigger Reason: {!$Input:Alerts.Trigger_Reason__c} 
+
+Suggest up to two actions a sales rep should take from this list. Only use this list of actions
+
+- Update Opportunity - Review key opportunity fields and update as needed 
+- Send Email - Contact client for follow-up or clarification 
+- Schedule Meeting - Set up discussion with client about next steps 
+- Update Call Notes - Document conversation details after client call 
+- Initiate Kick Off - Initiate onboarding process 
+- Log Activity - Record interaction details for tracking purposes 
+- Schedule Check-In - Arrange brief status meeting with client 
+- Review Prep Notes - Examine preparation materials before engagement 
+- Research Contact - Gather background information on key contact 
+- Review Adoption - Review client product usage
+- Initiate Nurture Process - Add to nurture campaign for high risk accounts
+
+Use EXACTLY these actions for each trigger reason:
+
+- &quot;In forecast but deal at risk&quot; → Review Record, Schedule Check-In 
+- &quot;Account at risk&quot; → Review Adoption, Initiate Red Account Nurture Process 
+- &quot;High-Value Prospect not yet engaged&quot; → Send Email 
+- &quot;Prep for meeting regarding expansion opportunities&quot; → Review Prep Notes 
+- &quot;Deal in Proposal Stage missing proposal&quot; → Review and Update Opportunity, Schedule Check-In 
+- &quot;Last touch point greater than 30 days&quot; → Schedule Meeting 
+- &quot;Post call follow ups&quot; → Update Call Notes
+- &quot;New contact no engagement yet&quot; → Research Contact, Send Email 
+- &quot;Setup overdue and client unresponsive to multiple outreach attempts. Risk of delay.&quot; → Review Status, Initiate Kick Off 
+- &quot;Kickoff meeting not scheduled. No client activity post-close. High risk of disengagement.&quot; → Schedule Check-In 
+
+If the trigger reason doesn&apos;t match any of the above exactly, suggest &quot;Review Record&quot;. 
+DO NOT display any text other than the action(s). No labels, no explanations, no categories - ONLY the action(s) separated by commas.
+</content>
+        <inputs>
+            <apiName>Alerts</apiName>
+            <definition>SOBJECT://Sales_Alerts__c</definition>
+            <masterLabel>Alerts</masterLabel>
+            <referenceName>Input:Alerts</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_3</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are provided with a sales alert. 
+
+The alert includes: 
+
+- Category: {!$Input:Alerts.Category__c} 
+- Object Type: {!$Input:Alerts.Object__c} 
+- Trigger Reason: {!$Input:Alerts.Trigger_Reason__c} 
+
+Suggest up to two actions a sales rep should take from this list. Only use this list of actions
+
+- Update Opportunity - Review key opportunity fields and update as needed 
+- Send Email - Contact client for follow-up or clarification 
+- Schedule Meeting - Set up discussion with client about next steps 
+- Update Call Notes - Document conversation details after client call 
+- Initiate Kick Off - Initiate onboarding process 
+- Log Activity - Record interaction details for tracking purposes 
+- Schedule Check-In - Arrange brief status meeting with client 
+- Review Prep Notes - Examine preparation materials before engagement 
+- Research Contact - Gather background information on key contact 
+- Review Adoption - Review client product usage
+- Initiate Nurture Process - Add to nurture campaign for high risk accounts
+
+Use EXACTLY these actions for each trigger reason:
+
+- &quot;In forecast but deal at risk&quot; → Review Record, Schedule Check-In 
+- &quot;Account at risk&quot; → Review Adoption, Initiate Nurture Process 
+- &quot;High-Value Prospect not yet engaged&quot; → Send Email 
+- &quot;Prep for meeting regarding expansion opportunities&quot; → Review Prep Notes 
+- &quot;Deal in Proposal Stage missing proposal&quot; → Update Opportunity, Schedule Check-In 
+- &quot;Last touch point greater than 30 days&quot; → Schedule Meeting 
+- &quot;Post call follow ups&quot; → Update Call Notes
+- &quot;New contact no engagement yet&quot; → Research Contact, Send Email 
+- &quot;Setup overdue and client unresponsive to multiple outreach attempts. Risk of delay.&quot; → Review Status, Initiate Kick Off 
+- &quot;Kickoff meeting not scheduled. No client activity post-close. High risk of disengagement.&quot; → Schedule Check-In 
+
+If the trigger reason doesn&apos;t match any of the above exactly, suggest &quot;Review Record&quot;. 
+DO NOT display any text other than the action(s). No labels, no explanations, no categories - ONLY the action(s) separated by commas.
+</content>
+        <inputs>
+            <apiName>Alerts</apiName>
+            <definition>SOBJECT://Sales_Alerts__c</definition>
+            <masterLabel>Alerts</masterLabel>
+            <referenceName>Input:Alerts</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_4</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are provided with a sales alert. 
+
+The alert includes: 
+
+- Category: {!$Input:Alerts.Category__c} 
+- Object Type: {!$Input:Alerts.Object__c} 
+- Trigger Reason: {!$Input:Alerts.Trigger_Reason__c} 
+
+Suggest up to two actions a sales rep should take from this list. Only use this list of actions
+
+- Update Opportunity - Review key opportunity fields and update as needed 
+- Send Email - Contact client for follow-up or clarification 
+- Schedule Meeting - Set up discussion with client about next steps 
+- Update Call Notes - Document conversation details after client call 
+- Initiate Kick Off - Initiate onboarding process 
+- Log Activity - Record interaction details for tracking purposes 
+- Schedule Check-In - Arrange brief status meeting with client 
+- Review Prep Notes - Examine preparation materials before engagement 
+- Research Contact - Gather background information on key contact 
+- Review Adoption - Review client product usage
+- Initiate Nurture Process - Add to nurture campaign for high risk accounts
+
+Use EXACTLY these actions for each trigger reason:
+
+- &quot;In forecast but deal at risk&quot; → Schedule Check-In 
+- &quot;Account at risk&quot; → Review Adoption, Initiate Nurture Process 
+- &quot;High-Value Prospect not yet engaged&quot; → Send Email 
+- &quot;Prep for meeting regarding expansion opportunities&quot; → Review Prep Notes 
+- &quot;Deal in Proposal Stage missing proposal&quot; → Update Opportunity, Schedule Check-In 
+- &quot;Last touch point greater than 30 days&quot; → Schedule Meeting 
+- &quot;Post call follow ups&quot; → Update Call Notes
+- &quot;New contact no engagement yet&quot; → Research Contact, Send Email 
+- &quot;Setup overdue and client unresponsive to multiple outreach attempts. Risk of delay.&quot; → Review Status, Initiate Kick Off 
+- &quot;Kickoff meeting not scheduled. No client activity post-close. High risk of disengagement.&quot; → Schedule Check-In 
+
+If the trigger reason doesn&apos;t match any of the above exactly, suggest &quot;Review Record&quot;. 
+DO NOT display any text other than the action(s). No labels, no explanations, no categories - ONLY the action(s) separated by commas.
+</content>
+        <inputs>
+            <apiName>Alerts</apiName>
+            <definition>SOBJECT://Sales_Alerts__c</definition>
+            <masterLabel>Alerts</masterLabel>
+            <referenceName>Input:Alerts</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>6NyfuIqqu8YiOrqcg2lvGEzjWJU9XEGv9zlL8GflXOw=_5</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>
